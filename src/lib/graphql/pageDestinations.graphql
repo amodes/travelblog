@@ -5,6 +5,9 @@ fragment PageDestinationFields on PageDestinations {
     spaceId
   }
   title
+  seoFields {
+    ...SeoFields
+  }
 }
 
 query pageDestinations($locale: String, $preview: Boolean) {

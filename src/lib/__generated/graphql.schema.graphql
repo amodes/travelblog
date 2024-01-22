@@ -594,6 +594,88 @@ The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://
 scalar JSON
 
 """
+The About page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageAbout)
+"""
+type PageAbout implements Entry {
+  content(locale: String): PageAboutContent
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): PageAboutLinkingCollections
+  seoFields(locale: String, preview: Boolean): Entry
+  sys: Sys!
+  title(locale: String): String
+}
+
+type PageAboutCollection {
+  items: [PageAbout]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type PageAboutContent {
+  json: JSON!
+  links: PageAboutContentLinks!
+}
+
+type PageAboutContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageAboutContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageAboutContentLinks {
+  assets: PageAboutContentAssets!
+  entries: PageAboutContentEntries!
+  resources: PageAboutContentResources!
+}
+
+type PageAboutContentResources {
+  block: [ResourceLink!]!
+  hyperlink: [ResourceLink!]!
+  inline: [ResourceLink!]!
+}
+
+input PageAboutFilter {
+  AND: [PageAboutFilter]
+  OR: [PageAboutFilter]
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  seoFields_exists: Boolean
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+type PageAboutLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageAboutOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 To create individual blog posts [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageBlogPost)
 """
 type PageBlogPost implements Entry {
@@ -790,6 +872,7 @@ A page to find blog posts by destinations [See type definition](https://app.cont
 type PageDestinations implements Entry {
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): PageDestinationsLinkingCollections
+  seoFields(locale: String, preview: Boolean): Entry
   sys: Sys!
   title(locale: String): String
 }
@@ -805,6 +888,7 @@ input PageDestinationsFilter {
   AND: [PageDestinationsFilter]
   OR: [PageDestinationsFilter]
   contentfulMetadata: ContentfulMetadataFilter
+  seoFields_exists: Boolean
   sys: SysFilter
   title: String
   title_contains: String
@@ -892,6 +976,7 @@ The 'Quality' type represents quality as whole numeric values between `1` and `1
 scalar Quality
 
 type Query {
+  _node(id: ID!, locale: String, preview: Boolean): _Node
   asset(id: String!, locale: String, preview: Boolean): Asset
   assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
   componentAuthor(id: String!, locale: String, preview: Boolean): ComponentAuthor
@@ -901,6 +986,8 @@ type Query {
   componentSeo(id: String!, locale: String, preview: Boolean): ComponentSeo
   componentSeoCollection(limit: Int = 100, locale: String, order: [ComponentSeoOrder], preview: Boolean, skip: Int = 0, where: ComponentSeoFilter): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
+  pageAbout(id: String!, locale: String, preview: Boolean): PageAbout
+  pageAboutCollection(limit: Int = 100, locale: String, order: [PageAboutOrder], preview: Boolean, skip: Int = 0, where: PageAboutFilter): PageAboutCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
   pageDestinations(id: String!, locale: String, preview: Boolean): PageDestinations
@@ -963,6 +1050,10 @@ input SysFilter {
   publishedVersion_lte: Float
   publishedVersion_not: Float
   publishedVersion_not_in: [Float]
+}
+
+interface _Node {
+  _id: ID!
 }
 
 input cfComponentAuthorNestedFilter {
