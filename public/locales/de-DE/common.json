@@ -1,7 +1,7 @@
 {
   "article": {
     "relatedArticles": "Verwandte Artikel",
-    "featured": "gekennzeichnet"
+    "featured": "featured"
   },
   "landingPage": {
     "latestArticles": "Neueste Artikel"
@@ -11,7 +11,11 @@
     "regionalSettings": "Regionale Einstellungen",
     "language": "Sprache",
     "languageDrawer": "Sprachschublade umschalten"
-
+  },
+  "header": {
+    "travelBlog": "Reiseblog",
+    "destinations": "Reiseziele",
+    "about": "Über uns"
   },
   "footer": {
     "aboutUs": "über uns",

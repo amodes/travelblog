@@ -19,13 +19,13 @@ export const Header = () => {
             </div>
           </Link>
           <Link className="mr-2" href="/">
-            <h3>Travel blog</h3>
+            <h3>{t('header.travelBlog')}</h3>
           </Link>
           <Link className="mr-2" href="/destinations">
-            <h3>Destinations</h3>
+            <h3>{t('header.destinations')}</h3>
           </Link>
           <Link href="/about">
-            <h3>About</h3>
+            <h3>{t('header.about')}</h3>
           </Link>
           <LanguageSelector />
         </Container>
