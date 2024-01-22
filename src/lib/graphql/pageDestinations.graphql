@@ -1,0 +1,16 @@
+fragment PageDestinationFields on PageDestinations {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  title
+}
+
+query pageDestinations($locale: String, $preview: Boolean) {
+  pageDestinationsCollection(locale: $locale, preview: $preview) {
+    items {
+      ...PageDestinationFields
+    }
+  }
+}

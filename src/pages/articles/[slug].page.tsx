@@ -2,7 +2,7 @@ import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { useTranslation } from 'next-i18next';
 
-import { getServerSideTranslations } from './utils/get-serverside-translations';
+import { getServerSideTranslations } from '../utils/get-serverside-translations';
 
 import { ArticleContent, ArticleHero, ArticleTileGrid } from '@src/components/features/article';
 import { SeoFields } from '@src/components/features/seo';
@@ -15,7 +15,6 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const blogPost = useContentfulLiveUpdates(props.blogPost);
   const relatedPosts = blogPost?.relatedBlogPostsCollection?.items;
-
   if (!blogPost || !relatedPosts) return null;
 
   return (
