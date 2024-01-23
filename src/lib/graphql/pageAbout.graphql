@@ -1,0 +1,29 @@
+fragment PageAboutFields on PageAbout {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  title
+  banner {
+    ...ImageFields
+  }
+  content {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+}
+
+query pageAbout($locale: String, $preview: Boolean) {
+  pageAboutCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageAboutFields
+    }
+  }
+}

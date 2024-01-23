@@ -94,6 +94,7 @@ type AssetLinkingCollections {
   componentRichImageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentRichImageCollection
   componentSeoCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ComponentSeoCollection
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageAboutCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageAboutCollection
   pageBlogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageBlogPostCollection
 }
 
@@ -597,6 +598,7 @@ scalar JSON
 The About page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageAbout)
 """
 type PageAbout implements Entry {
+  banner(locale: String, preview: Boolean): Asset
   content(locale: String): PageAboutContent
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): PageAboutLinkingCollections
@@ -643,6 +645,7 @@ type PageAboutContentResources {
 input PageAboutFilter {
   AND: [PageAboutFilter]
   OR: [PageAboutFilter]
+  banner_exists: Boolean
   content_contains: String
   content_exists: Boolean
   content_not_contains: String

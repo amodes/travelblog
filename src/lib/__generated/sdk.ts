@@ -174,6 +174,7 @@ export type AssetLinkingCollections = {
   componentRichImageCollection?: Maybe<ComponentRichImageCollection>;
   componentSeoCollection?: Maybe<ComponentSeoCollection>;
   entryCollection?: Maybe<EntryCollection>;
+  pageAboutCollection?: Maybe<PageAboutCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
 };
 
@@ -203,6 +204,14 @@ export type AssetLinkingCollectionsComponentSeoCollectionArgs = {
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type AssetLinkingCollectionsPageAboutCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
@@ -826,12 +835,20 @@ export type ImageTransformOptions = {
 /** The About page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageAbout) */
 export type PageAbout = Entry & {
   __typename?: 'PageAbout';
+  banner?: Maybe<Asset>;
   content?: Maybe<PageAboutContent>;
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<PageAboutLinkingCollections>;
   seoFields?: Maybe<Entry>;
   sys: Sys;
   title?: Maybe<Scalars['String']>;
+};
+
+
+/** The About page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageAbout) */
+export type PageAboutBannerArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -903,6 +920,7 @@ export type PageAboutContentResources = {
 export type PageAboutFilter = {
   AND?: InputMaybe<Array<InputMaybe<PageAboutFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<PageAboutFilter>>>;
+  banner_exists?: InputMaybe<Scalars['Boolean']>;
   content_contains?: InputMaybe<Scalars['String']>;
   content_exists?: InputMaybe<Scalars['Boolean']>;
   content_not_contains?: InputMaybe<Scalars['String']>;
@@ -1773,6 +1791,25 @@ export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: strin
 
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
+export type PageAboutFieldsFragment = { __typename: 'PageAbout', title?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, banner?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null, content?: { __typename?: 'PageAboutContent', json: any, links: { __typename?: 'PageAboutContentLinks', entries: { __typename?: 'PageAboutContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
+          { __typename?: 'ComponentRichImage' }
+          & RichImageFieldsFragment
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null };
+
+export type PageAboutQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type PageAboutQuery = { __typename?: 'Query', pageAboutCollection?: { __typename?: 'PageAboutCollection', items: Array<(
+      { __typename?: 'PageAbout' }
+      & PageAboutFieldsFragment
+    ) | null> } | null };
+
 export type ReferencePageBlogPostFieldsFragment = { __typename: 'PageBlogPost', slug?: string | null, publishedDate?: any | null, title?: string | null, shortDescription?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, author?: (
     { __typename?: 'ComponentAuthor' }
     & AuthorFieldsFragment
@@ -1906,6 +1943,43 @@ export const ImageFieldsFragmentDoc = gql`
   contentType
 }
     `;
+export const RichImageFieldsFragmentDoc = gql`
+    fragment RichImageFields on ComponentRichImage {
+  __typename
+  internalName
+  sys {
+    id
+  }
+  image {
+    ...ImageFields
+  }
+  caption
+  fullWidth
+}
+    `;
+export const PageAboutFieldsFragmentDoc = gql`
+    fragment PageAboutFields on PageAbout {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  title
+  banner {
+    ...ImageFields
+  }
+  content {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+}
+    `;
 export const SeoFieldsFragmentDoc = gql`
     fragment SeoFields on ComponentSeo {
   __typename
@@ -1931,20 +2005,6 @@ export const AuthorFieldsFragmentDoc = gql`
   avatar {
     ...ImageFields
   }
-}
-    `;
-export const RichImageFieldsFragmentDoc = gql`
-    fragment RichImageFields on ComponentRichImage {
-  __typename
-  internalName
-  sys {
-    id
-  }
-  image {
-    ...ImageFields
-  }
-  caption
-  fullWidth
 }
     `;
 export const ReferencePageBlogPostFieldsFragmentDoc = gql`
@@ -2052,6 +2112,17 @@ export const SitemapPagesFieldsFragmentDoc = gql`
   }
 }
     `;
+export const PageAboutDocument = gql`
+    query pageAbout($locale: String, $preview: Boolean) {
+  pageAboutCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageAboutFields
+    }
+  }
+}
+    ${PageAboutFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}
+${RichImageFieldsFragmentDoc}`;
 export const PageBlogPostDocument = gql`
     query pageBlogPost($slug: String!, $locale: String, $preview: Boolean) {
   pageBlogPostCollection(
@@ -2141,6 +2212,9 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
+    pageAbout(variables?: PageAboutQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageAboutQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageAboutQuery>(PageAboutDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageAbout', 'query');
+    },
     pageBlogPost(variables: PageBlogPostQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageBlogPostQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostQuery>(PageBlogPostDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPost', 'query');
     },

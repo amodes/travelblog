@@ -46,7 +46,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
       gqlClient.pageDestinations({ locale, preview }),
     ]);
 
-    console.log('destinationsPageData', destinationsPageData);
     const destinations = destinationsPageData.pageDestinationsCollection?.items[0];
 
     if (!destinations) {

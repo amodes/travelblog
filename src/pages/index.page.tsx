@@ -12,7 +12,7 @@ import { PageBlogPostOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
-const DestinationsPage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
+const HomePage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const { t } = useTranslation();
 
   const page = useContentfulLiveUpdates(props.page);
@@ -86,4 +86,4 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
   }
 };
 
-export default DestinationsPage;
+export default HomePage;
