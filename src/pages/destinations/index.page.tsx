@@ -1,15 +1,14 @@
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
-
 import {
   useContentfulLiveUpdates,
   useContentfulInspectorMode,
 } from '@contentful/live-preview/react';
+import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
+import { SeoFields } from '@src/components/features/seo';
+import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import { getServerSideTranslations } from '@src/pages/utils/get-serverside-translations';
-import { SeoFields } from '@src/components/features/seo';
-import { Container } from '@src/components/shared/container';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const destinations = useContentfulLiveUpdates(props.destinations);

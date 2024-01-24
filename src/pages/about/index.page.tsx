@@ -71,7 +71,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
       },
     };
   } catch (e) {
-    console.log(e);
     return {
       notFound: true,
       revalidate: revalidateDuration,

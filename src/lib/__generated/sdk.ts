@@ -1791,7 +1791,10 @@ export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: strin
 
 export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, description?: string | null, width?: number | null, height?: number | null, url?: string | null, contentType?: string | null, sys: { __typename?: 'Sys', id: string } };
 
-export type PageAboutFieldsFragment = { __typename: 'PageAbout', title?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, banner?: (
+export type PageAboutFieldsFragment = { __typename: 'PageAbout', title?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentRichImage' } | (
+    { __typename?: 'ComponentSeo' }
+    & SeoFieldsFragment
+  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null, banner?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null, content?: { __typename?: 'PageAboutContent', json: any, links: { __typename?: 'PageAboutContentLinks', entries: { __typename?: 'PageAboutContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
@@ -1943,6 +1946,21 @@ export const ImageFieldsFragmentDoc = gql`
   contentType
 }
     `;
+export const SeoFieldsFragmentDoc = gql`
+    fragment SeoFields on ComponentSeo {
+  __typename
+  pageTitle
+  pageDescription
+  canonicalUrl
+  nofollow
+  noindex
+  shareImagesCollection(limit: 3, locale: $locale) {
+    items {
+      ...ImageFields
+    }
+  }
+}
+    `;
 export const RichImageFieldsFragmentDoc = gql`
     fragment RichImageFields on ComponentRichImage {
   __typename
@@ -1964,6 +1982,9 @@ export const PageAboutFieldsFragmentDoc = gql`
     id
     spaceId
   }
+  seoFields {
+    ...SeoFields
+  }
   title
   banner {
     ...ImageFields
@@ -1976,21 +1997,6 @@ export const PageAboutFieldsFragmentDoc = gql`
           ...RichImageFields
         }
       }
-    }
-  }
-}
-    `;
-export const SeoFieldsFragmentDoc = gql`
-    fragment SeoFields on ComponentSeo {
-  __typename
-  pageTitle
-  pageDescription
-  canonicalUrl
-  nofollow
-  noindex
-  shareImagesCollection(limit: 3, locale: $locale) {
-    items {
-      ...ImageFields
     }
   }
 }
@@ -2121,6 +2127,7 @@ export const PageAboutDocument = gql`
   }
 }
     ${PageAboutFieldsFragmentDoc}
+${SeoFieldsFragmentDoc}
 ${ImageFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}`;
 export const PageBlogPostDocument = gql`
@@ -2164,7 +2171,7 @@ ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
 export const PageDestinationsDocument = gql`
     query pageDestinations($locale: String, $preview: Boolean) {
-  pageDestinationsCollection(locale: $locale, preview: $preview) {
+  pageDestinationsCollection(limit: 1, locale: $locale, preview: $preview) {
     items {
       ...PageDestinationFields
     }

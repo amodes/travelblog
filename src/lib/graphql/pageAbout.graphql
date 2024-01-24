@@ -4,6 +4,9 @@ fragment PageAboutFields on PageAbout {
     id
     spaceId
   }
+  seoFields {
+    ...SeoFields
+  }
   title
   banner {
     ...ImageFields

@@ -11,7 +11,7 @@ fragment PageDestinationFields on PageDestinations {
 }
 
 query pageDestinations($locale: String, $preview: Boolean) {
-  pageDestinationsCollection(locale: $locale, preview: $preview) {
+  pageDestinationsCollection(limit: 1, locale: $locale, preview: $preview) {
     items {
       ...PageDestinationFields
     }
