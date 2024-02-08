@@ -1,0 +1,19 @@
+query pageCountryCollection(
+  $locale: String
+  $preview: Boolean
+  $limit: Int
+  $order: [PageCountryOrder]
+  $where: PageCountryFilter
+) {
+  pageCountryCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...PageCountryFields
+    }
+  }
+}

@@ -6,6 +6,9 @@
   "landingPage": {
     "latestArticles": "Neueste Artikel"
   },
+  "destinationPage": {
+    "otherArticles": "Andere Artikel"
+  },
   "common": {
     "homepage": "Startseite",
     "regionalSettings": "Regionale Einstellungen",

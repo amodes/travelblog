@@ -1,0 +1,21 @@
+fragment PageCountryFields on PageCountry {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  seoFields {
+    ...SeoFields
+  }
+  slug
+  countryName
+  continentName
+}
+
+query PageCountries($locale: String, $preview: Boolean) {
+  pageCountryCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageCountryFields
+    }
+  }
+}

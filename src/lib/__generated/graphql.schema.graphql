@@ -335,6 +335,7 @@ input ComponentSeoFilter {
 type ComponentSeoLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  pageCountryCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageCountryCollectionOrder], preview: Boolean, skip: Int = 0): PageCountryCollection
   pageLandingCollection(limit: Int = 100, locale: String, order: [ComponentSeoLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
 }
 
@@ -355,6 +356,23 @@ enum ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder {
   sys_publishedVersion_DESC
   title_ASC
   title_DESC
+}
+
+enum ComponentSeoLinkingCollectionsPageCountryCollectionOrder {
+  continentName_ASC
+  continentName_DESC
+  countryName_ASC
+  countryName_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum ComponentSeoLinkingCollectionsPageLandingCollectionOrder {
@@ -789,6 +807,7 @@ input PageBlogPostFilter {
 type PageBlogPostLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder], preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  pageCountryCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageCountryCollectionOrder], preview: Boolean, skip: Int = 0): PageCountryCollection
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageBlogPostLinkingCollectionsPageLandingCollectionOrder], preview: Boolean, skip: Int = 0): PageLandingCollection
 }
 
@@ -809,6 +828,23 @@ enum PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder {
   sys_publishedVersion_DESC
   title_ASC
   title_DESC
+}
+
+enum PageBlogPostLinkingCollectionsPageCountryCollectionOrder {
+  continentName_ASC
+  continentName_DESC
+  countryName_ASC
+  countryName_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 enum PageBlogPostLinkingCollectionsPageLandingCollectionOrder {
@@ -870,10 +906,157 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 }
 
 """
+A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry)
+"""
+type PageCountry implements Entry {
+  content(locale: String): PageCountryContent
+  contentfulMetadata: ContentfulMetadata!
+  continentName(locale: String): String
+  countryName(locale: String): String
+  linkedFrom(allowedLocales: [String]): PageCountryLinkingCollections
+  relatedBlogPostsCollection(limit: Int = 100, locale: String, order: [PageCountryRelatedBlogPostsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageCountryRelatedBlogPostsCollection
+  seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
+  slug(locale: String): String
+  sys: Sys!
+}
+
+type PageCountryCollection {
+  items: [PageCountry]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+type PageCountryContent {
+  json: JSON!
+  links: PageCountryContentLinks!
+}
+
+type PageCountryContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageCountryContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageCountryContentLinks {
+  assets: PageCountryContentAssets!
+  entries: PageCountryContentEntries!
+  resources: PageCountryContentResources!
+}
+
+type PageCountryContentResources {
+  block: [ResourceLink!]!
+  hyperlink: [ResourceLink!]!
+  inline: [ResourceLink!]!
+}
+
+input PageCountryFilter {
+  AND: [PageCountryFilter]
+  OR: [PageCountryFilter]
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  continentName: String
+  continentName_contains: String
+  continentName_exists: Boolean
+  continentName_in: [String]
+  continentName_not: String
+  continentName_not_contains: String
+  continentName_not_in: [String]
+  countryName: String
+  countryName_contains: String
+  countryName_exists: Boolean
+  countryName_in: [String]
+  countryName_not: String
+  countryName_not_contains: String
+  countryName_not_in: [String]
+  relatedBlogPosts: cfPageBlogPostNestedFilter
+  relatedBlogPostsCollection_exists: Boolean
+  seoFields: cfComponentSeoNestedFilter
+  seoFields_exists: Boolean
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+}
+
+type PageCountryLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  pageDestinationsCollection(limit: Int = 100, locale: String, order: [PageCountryLinkingCollectionsPageDestinationsCollectionOrder], preview: Boolean, skip: Int = 0): PageDestinationsCollection
+}
+
+enum PageCountryLinkingCollectionsPageDestinationsCollectionOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+enum PageCountryOrder {
+  continentName_ASC
+  continentName_DESC
+  countryName_ASC
+  countryName_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type PageCountryRelatedBlogPostsCollection {
+  items: [PageBlogPost]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum PageCountryRelatedBlogPostsCollectionOrder {
+  internalName_ASC
+  internalName_DESC
+  publishedDate_ASC
+  publishedDate_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+}
+
+"""
 A page to find blog posts by destinations [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageDestinations)
 """
 type PageDestinations implements Entry {
   contentfulMetadata: ContentfulMetadata!
+  countriesCollection(limit: Int = 100, locale: String, order: [PageDestinationsCountriesCollectionOrder], preview: Boolean, skip: Int = 0, where: PageCountryFilter): PageDestinationsCountriesCollection
   linkedFrom(allowedLocales: [String]): PageDestinationsLinkingCollections
   seoFields(locale: String, preview: Boolean): Entry
   sys: Sys!
@@ -887,10 +1070,36 @@ type PageDestinationsCollection {
   total: Int!
 }
 
+type PageDestinationsCountriesCollection {
+  items: [PageCountry]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+enum PageDestinationsCountriesCollectionOrder {
+  continentName_ASC
+  continentName_DESC
+  countryName_ASC
+  countryName_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
 input PageDestinationsFilter {
   AND: [PageDestinationsFilter]
   OR: [PageDestinationsFilter]
   contentfulMetadata: ContentfulMetadataFilter
+  countries: cfPageCountryNestedFilter
+  countriesCollection_exists: Boolean
   seoFields_exists: Boolean
   sys: SysFilter
   title: String
@@ -993,6 +1202,8 @@ type Query {
   pageAboutCollection(limit: Int = 100, locale: String, order: [PageAboutOrder], preview: Boolean, skip: Int = 0, where: PageAboutFilter): PageAboutCollection
   pageBlogPost(id: String!, locale: String, preview: Boolean): PageBlogPost
   pageBlogPostCollection(limit: Int = 100, locale: String, order: [PageBlogPostOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageBlogPostCollection
+  pageCountry(id: String!, locale: String, preview: Boolean): PageCountry
+  pageCountryCollection(limit: Int = 100, locale: String, order: [PageCountryOrder], preview: Boolean, skip: Int = 0, where: PageCountryFilter): PageCountryCollection
   pageDestinations(id: String!, locale: String, preview: Boolean): PageDestinations
   pageDestinationsCollection(limit: Int = 100, locale: String, order: [PageDestinationsOrder], preview: Boolean, skip: Int = 0, where: PageDestinationsFilter): PageDestinationsCollection
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
@@ -1172,4 +1383,37 @@ input cfPageBlogPostNestedFilter {
   title_not: String
   title_not_contains: String
   title_not_in: [String]
+}
+
+input cfPageCountryNestedFilter {
+  AND: [cfPageCountryNestedFilter]
+  OR: [cfPageCountryNestedFilter]
+  content_contains: String
+  content_exists: Boolean
+  content_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  continentName: String
+  continentName_contains: String
+  continentName_exists: Boolean
+  continentName_in: [String]
+  continentName_not: String
+  continentName_not_contains: String
+  continentName_not_in: [String]
+  countryName: String
+  countryName_contains: String
+  countryName_exists: Boolean
+  countryName_in: [String]
+  countryName_not: String
+  countryName_not_contains: String
+  countryName_not_in: [String]
+  relatedBlogPostsCollection_exists: Boolean
+  seoFields_exists: Boolean
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
 }

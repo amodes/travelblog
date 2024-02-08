@@ -598,6 +598,7 @@ export type ComponentSeoLinkingCollections = {
   __typename?: 'ComponentSeoLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+  pageCountryCollection?: Maybe<PageCountryCollection>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
 };
 
@@ -614,6 +615,15 @@ export type ComponentSeoLinkingCollectionsPageBlogPostCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   order?: InputMaybe<Array<InputMaybe<ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type ComponentSeoLinkingCollectionsPageCountryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<ComponentSeoLinkingCollectionsPageCountryCollectionOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
 };
@@ -644,6 +654,23 @@ export enum ComponentSeoLinkingCollectionsPageBlogPostCollectionOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC'
+}
+
+export enum ComponentSeoLinkingCollectionsPageCountryCollectionOrder {
+  ContinentNameAsc = 'continentName_ASC',
+  ContinentNameDesc = 'continentName_DESC',
+  CountryNameAsc = 'countryName_ASC',
+  CountryNameDesc = 'countryName_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
 export enum ComponentSeoLinkingCollectionsPageLandingCollectionOrder {
@@ -1155,6 +1182,7 @@ export type PageBlogPostLinkingCollections = {
   __typename?: 'PageBlogPostLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+  pageCountryCollection?: Maybe<PageCountryCollection>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
 };
 
@@ -1171,6 +1199,15 @@ export type PageBlogPostLinkingCollectionsPageBlogPostCollectionArgs = {
   limit?: InputMaybe<Scalars['Int']>;
   locale?: InputMaybe<Scalars['String']>;
   order?: InputMaybe<Array<InputMaybe<PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type PageBlogPostLinkingCollectionsPageCountryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageBlogPostLinkingCollectionsPageCountryCollectionOrder>>>;
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
 };
@@ -1201,6 +1238,23 @@ export enum PageBlogPostLinkingCollectionsPageBlogPostCollectionOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC'
+}
+
+export enum PageBlogPostLinkingCollectionsPageCountryCollectionOrder {
+  ContinentNameAsc = 'continentName_ASC',
+  ContinentNameDesc = 'continentName_DESC',
+  CountryNameAsc = 'countryName_ASC',
+  CountryNameDesc = 'countryName_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
 export enum PageBlogPostLinkingCollectionsPageLandingCollectionOrder {
@@ -1262,14 +1316,245 @@ export enum PageBlogPostRelatedBlogPostsCollectionOrder {
   TitleDesc = 'title_DESC'
 }
 
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountry = Entry & {
+  __typename?: 'PageCountry';
+  content?: Maybe<PageCountryContent>;
+  contentfulMetadata: ContentfulMetadata;
+  continentName?: Maybe<Scalars['String']>;
+  countryName?: Maybe<Scalars['String']>;
+  linkedFrom?: Maybe<PageCountryLinkingCollections>;
+  relatedBlogPostsCollection?: Maybe<PageCountryRelatedBlogPostsCollection>;
+  seoFields?: Maybe<ComponentSeo>;
+  slug?: Maybe<Scalars['String']>;
+  sys: Sys;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountryContentArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountryContinentNameArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountryCountryNameArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountryLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountryRelatedBlogPostsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageCountryRelatedBlogPostsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageBlogPostFilter>;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountrySeoFieldsArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  where?: InputMaybe<ComponentSeoFilter>;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountrySlugArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type PageCountryCollection = {
+  __typename?: 'PageCountryCollection';
+  items: Array<Maybe<PageCountry>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type PageCountryContent = {
+  __typename?: 'PageCountryContent';
+  json: Scalars['JSON'];
+  links: PageCountryContentLinks;
+};
+
+export type PageCountryContentAssets = {
+  __typename?: 'PageCountryContentAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type PageCountryContentEntries = {
+  __typename?: 'PageCountryContentEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type PageCountryContentLinks = {
+  __typename?: 'PageCountryContentLinks';
+  assets: PageCountryContentAssets;
+  entries: PageCountryContentEntries;
+  resources: PageCountryContentResources;
+};
+
+export type PageCountryContentResources = {
+  __typename?: 'PageCountryContentResources';
+  block: Array<ResourceLink>;
+  hyperlink: Array<ResourceLink>;
+  inline: Array<ResourceLink>;
+};
+
+export type PageCountryFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PageCountryFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PageCountryFilter>>>;
+  content_contains?: InputMaybe<Scalars['String']>;
+  content_exists?: InputMaybe<Scalars['Boolean']>;
+  content_not_contains?: InputMaybe<Scalars['String']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  continentName?: InputMaybe<Scalars['String']>;
+  continentName_contains?: InputMaybe<Scalars['String']>;
+  continentName_exists?: InputMaybe<Scalars['Boolean']>;
+  continentName_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  continentName_not?: InputMaybe<Scalars['String']>;
+  continentName_not_contains?: InputMaybe<Scalars['String']>;
+  continentName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  countryName?: InputMaybe<Scalars['String']>;
+  countryName_contains?: InputMaybe<Scalars['String']>;
+  countryName_exists?: InputMaybe<Scalars['Boolean']>;
+  countryName_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  countryName_not?: InputMaybe<Scalars['String']>;
+  countryName_not_contains?: InputMaybe<Scalars['String']>;
+  countryName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  relatedBlogPosts?: InputMaybe<CfPageBlogPostNestedFilter>;
+  relatedBlogPostsCollection_exists?: InputMaybe<Scalars['Boolean']>;
+  seoFields?: InputMaybe<CfComponentSeoNestedFilter>;
+  seoFields_exists?: InputMaybe<Scalars['Boolean']>;
+  slug?: InputMaybe<Scalars['String']>;
+  slug_contains?: InputMaybe<Scalars['String']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not?: InputMaybe<Scalars['String']>;
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
+export type PageCountryLinkingCollections = {
+  __typename?: 'PageCountryLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  pageDestinationsCollection?: Maybe<PageDestinationsCollection>;
+};
+
+
+export type PageCountryLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type PageCountryLinkingCollectionsPageDestinationsCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageCountryLinkingCollectionsPageDestinationsCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum PageCountryLinkingCollectionsPageDestinationsCollectionOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
+export enum PageCountryOrder {
+  ContinentNameAsc = 'continentName_ASC',
+  ContinentNameDesc = 'continentName_DESC',
+  CountryNameAsc = 'countryName_ASC',
+  CountryNameDesc = 'countryName_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type PageCountryRelatedBlogPostsCollection = {
+  __typename?: 'PageCountryRelatedBlogPostsCollection';
+  items: Array<Maybe<PageBlogPost>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export enum PageCountryRelatedBlogPostsCollectionOrder {
+  InternalNameAsc = 'internalName_ASC',
+  InternalNameDesc = 'internalName_DESC',
+  PublishedDateAsc = 'publishedDate_ASC',
+  PublishedDateDesc = 'publishedDate_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
+}
+
 /** A page to find blog posts by destinations [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageDestinations) */
 export type PageDestinations = Entry & {
   __typename?: 'PageDestinations';
   contentfulMetadata: ContentfulMetadata;
+  countriesCollection?: Maybe<PageDestinationsCountriesCollection>;
   linkedFrom?: Maybe<PageDestinationsLinkingCollections>;
   seoFields?: Maybe<Entry>;
   sys: Sys;
   title?: Maybe<Scalars['String']>;
+};
+
+
+/** A page to find blog posts by destinations [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageDestinations) */
+export type PageDestinationsCountriesCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageDestinationsCountriesCollectionOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageCountryFilter>;
 };
 
 
@@ -1299,10 +1584,37 @@ export type PageDestinationsCollection = {
   total: Scalars['Int'];
 };
 
+export type PageDestinationsCountriesCollection = {
+  __typename?: 'PageDestinationsCountriesCollection';
+  items: Array<Maybe<PageCountry>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export enum PageDestinationsCountriesCollectionOrder {
+  ContinentNameAsc = 'continentName_ASC',
+  ContinentNameDesc = 'continentName_DESC',
+  CountryNameAsc = 'countryName_ASC',
+  CountryNameDesc = 'countryName_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type PageDestinationsFilter = {
   AND?: InputMaybe<Array<InputMaybe<PageDestinationsFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<PageDestinationsFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  countries?: InputMaybe<CfPageCountryNestedFilter>;
+  countriesCollection_exists?: InputMaybe<Scalars['Boolean']>;
   seoFields_exists?: InputMaybe<Scalars['Boolean']>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']>;
@@ -1447,6 +1759,8 @@ export type Query = {
   pageAboutCollection?: Maybe<PageAboutCollection>;
   pageBlogPost?: Maybe<PageBlogPost>;
   pageBlogPostCollection?: Maybe<PageBlogPostCollection>;
+  pageCountry?: Maybe<PageCountry>;
+  pageCountryCollection?: Maybe<PageCountryCollection>;
   pageDestinations?: Maybe<PageDestinations>;
   pageDestinationsCollection?: Maybe<PageDestinationsCollection>;
   pageLanding?: Maybe<PageLanding>;
@@ -1570,6 +1884,23 @@ export type QueryPageBlogPostCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PageBlogPostFilter>;
+};
+
+
+export type QueryPageCountryArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryPageCountryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageCountryOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageCountryFilter>;
 };
 
 
@@ -1784,6 +2115,39 @@ export type CfPageBlogPostNestedFilter = {
   title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
+export type CfPageCountryNestedFilter = {
+  AND?: InputMaybe<Array<InputMaybe<CfPageCountryNestedFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<CfPageCountryNestedFilter>>>;
+  content_contains?: InputMaybe<Scalars['String']>;
+  content_exists?: InputMaybe<Scalars['Boolean']>;
+  content_not_contains?: InputMaybe<Scalars['String']>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  continentName?: InputMaybe<Scalars['String']>;
+  continentName_contains?: InputMaybe<Scalars['String']>;
+  continentName_exists?: InputMaybe<Scalars['Boolean']>;
+  continentName_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  continentName_not?: InputMaybe<Scalars['String']>;
+  continentName_not_contains?: InputMaybe<Scalars['String']>;
+  continentName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  countryName?: InputMaybe<Scalars['String']>;
+  countryName_contains?: InputMaybe<Scalars['String']>;
+  countryName_exists?: InputMaybe<Scalars['Boolean']>;
+  countryName_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  countryName_not?: InputMaybe<Scalars['String']>;
+  countryName_not_contains?: InputMaybe<Scalars['String']>;
+  countryName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  relatedBlogPostsCollection_exists?: InputMaybe<Scalars['Boolean']>;
+  seoFields_exists?: InputMaybe<Scalars['Boolean']>;
+  slug?: InputMaybe<Scalars['String']>;
+  slug_contains?: InputMaybe<Scalars['String']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not?: InputMaybe<Scalars['String']>;
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  sys?: InputMaybe<SysFilter>;
+};
+
 export type AuthorFieldsFragment = { __typename: 'ComponentAuthor', name?: string | null, sys: { __typename?: 'Sys', id: string }, avatar?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
@@ -1794,13 +2158,13 @@ export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, 
 export type PageAboutFieldsFragment = { __typename: 'PageAbout', title?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentRichImage' } | (
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
-  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null, banner?: (
+  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null, banner?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null, content?: { __typename?: 'PageAboutContent', json: any, links: { __typename?: 'PageAboutContentLinks', entries: { __typename?: 'PageAboutContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null };
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null };
 
 export type PageAboutQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']>;
@@ -1833,7 +2197,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -1864,10 +2228,40 @@ export type PageBlogPostCollectionQuery = { __typename?: 'Query', pageBlogPostCo
       & PageBlogPostFieldsFragment
     ) | null> } | null };
 
+export type PageCountryFieldsFragment = { __typename: 'PageCountry', slug?: string | null, countryName?: string | null, continentName?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
+    { __typename?: 'ComponentSeo' }
+    & SeoFieldsFragment
+  ) | null };
+
+export type PageCountriesQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type PageCountriesQuery = { __typename?: 'Query', pageCountryCollection?: { __typename?: 'PageCountryCollection', items: Array<(
+      { __typename?: 'PageCountry' }
+      & PageCountryFieldsFragment
+    ) | null> } | null };
+
+export type PageCountryCollectionQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  order?: InputMaybe<Array<InputMaybe<PageCountryOrder>> | InputMaybe<PageCountryOrder>>;
+  where?: InputMaybe<PageCountryFilter>;
+}>;
+
+
+export type PageCountryCollectionQuery = { __typename?: 'Query', pageCountryCollection?: { __typename?: 'PageCountryCollection', items: Array<(
+      { __typename?: 'PageCountry' }
+      & PageCountryFieldsFragment
+    ) | null> } | null };
+
 export type PageDestinationFieldsFragment = { __typename: 'PageDestinations', title?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentRichImage' } | (
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
-  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null };
+  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null };
 
 export type PageDestinationsQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']>;
@@ -2070,6 +2464,21 @@ export const PageBlogPostFieldsFragmentDoc = gql`
   }
 }
     `;
+export const PageCountryFieldsFragmentDoc = gql`
+    fragment PageCountryFields on PageCountry {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  seoFields {
+    ...SeoFields
+  }
+  slug
+  countryName
+  continentName
+}
+    `;
 export const PageDestinationFieldsFragmentDoc = gql`
     fragment PageDestinationFields on PageDestinations {
   __typename
@@ -2169,6 +2578,34 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
+export const PageCountriesDocument = gql`
+    query PageCountries($locale: String, $preview: Boolean) {
+  pageCountryCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageCountryFields
+    }
+  }
+}
+    ${PageCountryFieldsFragmentDoc}
+${SeoFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
+export const PageCountryCollectionDocument = gql`
+    query pageCountryCollection($locale: String, $preview: Boolean, $limit: Int, $order: [PageCountryOrder], $where: PageCountryFilter) {
+  pageCountryCollection(
+    limit: $limit
+    locale: $locale
+    preview: $preview
+    order: $order
+    where: $where
+  ) {
+    items {
+      ...PageCountryFields
+    }
+  }
+}
+    ${PageCountryFieldsFragmentDoc}
+${SeoFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const PageDestinationsDocument = gql`
     query pageDestinations($locale: String, $preview: Boolean) {
   pageDestinationsCollection(limit: 1, locale: $locale, preview: $preview) {
@@ -2227,6 +2664,12 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pageBlogPostCollection(variables?: PageBlogPostCollectionQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageBlogPostCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostCollectionQuery>(PageBlogPostCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPostCollection', 'query');
+    },
+    PageCountries(variables?: PageCountriesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageCountriesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageCountriesQuery>(PageCountriesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PageCountries', 'query');
+    },
+    pageCountryCollection(variables?: PageCountryCollectionQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageCountryCollectionQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageCountryCollectionQuery>(PageCountryCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageCountryCollection', 'query');
     },
     pageDestinations(variables?: PageDestinationsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageDestinationsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageDestinationsQuery>(PageDestinationsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageDestinations', 'query');
