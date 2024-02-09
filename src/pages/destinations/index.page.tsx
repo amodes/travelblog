@@ -4,8 +4,7 @@ import {
 } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-import { CountryCard } from './CountryCard';
-
+import { CountryCard } from '@src/components/features/country/CountryCard';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { PageCountryOrder } from '@src/lib/__generated/sdk';
