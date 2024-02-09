@@ -96,6 +96,7 @@ type AssetLinkingCollections {
   entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
   pageAboutCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageAboutCollection
   pageBlogPostCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageBlogPostCollection
+  pageCountryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): PageCountryCollection
 }
 
 enum AssetOrder {
@@ -917,6 +918,7 @@ type PageCountry implements Entry {
   relatedBlogPostsCollection(limit: Int = 100, locale: String, order: [PageCountryRelatedBlogPostsCollectionOrder], preview: Boolean, skip: Int = 0, where: PageBlogPostFilter): PageCountryRelatedBlogPostsCollection
   seoFields(locale: String, preview: Boolean, where: ComponentSeoFilter): ComponentSeo
   slug(locale: String): String
+  squareImage(locale: String, preview: Boolean): Asset
   sys: Sys!
 }
 
@@ -987,6 +989,7 @@ input PageCountryFilter {
   slug_not: String
   slug_not_contains: String
   slug_not_in: [String]
+  squareImage_exists: Boolean
   sys: SysFilter
 }
 
@@ -1415,5 +1418,6 @@ input cfPageCountryNestedFilter {
   slug_not: String
   slug_not_contains: String
   slug_not_in: [String]
+  squareImage_exists: Boolean
   sys: SysFilter
 }

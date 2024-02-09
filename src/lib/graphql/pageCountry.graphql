@@ -10,6 +10,9 @@ fragment PageCountryFields on PageCountry {
   slug
   countryName
   continentName
+  squareImage {
+    ...ImageFields
+  }
 }
 
 query PageCountries($locale: String, $preview: Boolean) {
