@@ -11,6 +11,7 @@ import { PageCountryOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import { getServerSideTranslations } from '@src/pages/utils/get-serverside-translations';
+import { CountryCardGrid } from '@src/components/features/country/CountryCardGrid';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const destinations = useContentfulLiveUpdates(props.destinations);
@@ -29,13 +30,11 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       {destinations.seoFields && <SeoFields {...destinations.seoFields} />}
-      <Container className="my-8  md:mb-10 lg:mb-16">
+      <Container className="my-8 md:mb-10 lg:mb-16">
         <h2 className="mb-4 md:mb-6" {...inspectorProps({ fieldId: 'publishedDate' })}>
           {title}
         </h2>
-        {countries.map(country => (
-          <CountryCard key={country.countryName} country={country} />
-        ))}
+        <CountryCardGrid countries={countries} />
       </Container>
     </>
   );

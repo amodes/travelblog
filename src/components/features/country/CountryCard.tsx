@@ -8,17 +8,9 @@ export const CountryCard = ({ country }: { country: PageCountry }) => {
     <>
       {country.slug && (
         <Link key={country.countryName} href={country.slug}>
-          <div className="h-72 w-72">
+          <div className="h-full w-full sm:h-72 sm:w-72">
             <div className="flex items-center justify-center">
-              {country.squareImage && (
-                <CtfImage
-                  nextImageProps={{
-                    width: 300,
-                    height: 300,
-                  }}
-                  {...country.squareImage}
-                />
-              )}
+              {country.squareImage && <CtfImage {...country.squareImage} />}
               <h3 className="absolute text-4xl text-colorWhite">
                 {country.countryName?.toLocaleUpperCase()}
               </h3>
