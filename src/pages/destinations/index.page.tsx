@@ -1,7 +1,4 @@
-import {
-  useContentfulLiveUpdates,
-  useContentfulInspectorMode,
-} from '@contentful/live-preview/react';
+import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import { CountryCardGrid } from '@src/components/features/country/CountryCardGrid';
@@ -15,11 +12,8 @@ import { getServerSideTranslations } from '@src/pages/utils/get-serverside-trans
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const destinations = useContentfulLiveUpdates(props.destinations);
   const countries = useContentfulLiveUpdates(props.countries);
-  const inspectorProps = useContentfulInspectorMode({ entryId: destinations.sys.id });
 
   if (!destinations || !countries) return;
-
-  const { title } = destinations;
 
   // Later when we have a lot of content, we can use this to group countries by continents
   // const continents = groupBy(
@@ -31,16 +25,13 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       {destinations.seoFields && <SeoFields {...destinations.seoFields} />}
       <Container className="my-8 md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6" {...inspectorProps({ fieldId: 'publishedDate' })}>
-          {title}
-        </h2>
         <CountryCardGrid countries={countries} />
       </Container>
     </>
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode: preview }) => {
+export const getStaticProps: GetStaticProps = async ({ locale, draftMode: preview }) => {
   if (!locale) {
     return {
       notFound: true,

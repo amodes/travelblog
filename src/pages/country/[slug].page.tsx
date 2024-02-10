@@ -1,24 +1,27 @@
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { useTranslation } from 'next-i18next';
 
 import { getServerSideTranslations } from '../utils/get-serverside-translations';
 
+import { ArticleTileGrid } from '@src/components/features/article';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const { t } = useTranslation();
-
   const countryPage = useContentfulLiveUpdates(props.countryPage);
+  const relatedPosts = countryPage?.relatedBlogPostsCollection?.items;
+
   if (!countryPage) return null;
 
   return (
     <>
       {countryPage.seoFields && <SeoFields {...countryPage.seoFields} />}
-      <Container>{countryPage.countryName}</Container>
+      <Container className="my-8  md:mb-10 lg:mb-16">
+        <h2 className="mb-4 md:mb-6">{countryPage.countryName}</h2>
+        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={relatedPosts} />
+      </Container>
     </>
   );
 };
@@ -33,10 +36,11 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
 
   const gqlClient = preview ? previewClient : client;
   try {
-    const [countryPageData] = await Promise.all([
-      gqlClient.pageCountry({ slug: params.slug.toString(), locale, preview }),
-      // gqlClient.pageLanding({ locale, preview }),
-    ]);
+    const countryPageData = await gqlClient.pageCountry({
+      slug: params.slug.toString(),
+      locale,
+      preview,
+    });
 
     const countryPage = countryPageData.pageCountryCollection?.items[0];
 

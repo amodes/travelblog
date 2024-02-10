@@ -13,9 +13,14 @@ fragment PageCountryFields on PageCountry {
   squareImage {
     ...ImageFields
   }
+  relatedBlogPostsCollection(limit: 10) {
+    items {
+      ...ReferencePageBlogPostFields
+    }
+  }
 }
 
-query pageCountry($slug: String!, $locale: String, $preview: Boolean){
+query pageCountry($slug: String!, $locale: String, $preview: Boolean) {
   pageCountryCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
     items {
       ...PageCountryFields

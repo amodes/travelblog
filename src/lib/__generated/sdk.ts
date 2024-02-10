@@ -2253,7 +2253,10 @@ export type PageCountryFieldsFragment = { __typename: 'PageCountry', slug?: stri
   ) | null, squareImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
-  ) | null };
+  ) | null, relatedBlogPostsCollection?: { __typename?: 'PageCountryRelatedBlogPostsCollection', items: Array<(
+      { __typename?: 'PageBlogPost' }
+      & ReferencePageBlogPostFieldsFragment
+    ) | null> } | null };
 
 export type PageCountryQueryVariables = Exact<{
   slug: Scalars['String'];
@@ -2503,6 +2506,11 @@ export const PageCountryFieldsFragmentDoc = gql`
   squareImage {
     ...ImageFields
   }
+  relatedBlogPostsCollection(limit: 10) {
+    items {
+      ...ReferencePageBlogPostFields
+    }
+  }
 }
     `;
 export const PageDestinationFieldsFragmentDoc = gql`
@@ -2619,7 +2627,9 @@ export const PageCountryDocument = gql`
 }
     ${PageCountryFieldsFragmentDoc}
 ${SeoFieldsFragmentDoc}
-${ImageFieldsFragmentDoc}`;
+${ImageFieldsFragmentDoc}
+${ReferencePageBlogPostFieldsFragmentDoc}
+${AuthorFieldsFragmentDoc}`;
 export const PageCountryCollectionDocument = gql`
     query pageCountryCollection($locale: String, $preview: Boolean, $limit: Int, $order: [PageCountryOrder], $where: PageCountryFilter) {
   pageCountryCollection(
@@ -2636,7 +2646,9 @@ export const PageCountryCollectionDocument = gql`
 }
     ${PageCountryFieldsFragmentDoc}
 ${SeoFieldsFragmentDoc}
-${ImageFieldsFragmentDoc}`;
+${ImageFieldsFragmentDoc}
+${ReferencePageBlogPostFieldsFragmentDoc}
+${AuthorFieldsFragmentDoc}`;
 export const PageDestinationsDocument = gql`
     query pageDestinations($locale: String, $preview: Boolean) {
   pageDestinationsCollection(limit: 1, locale: $locale, preview: $preview) {
