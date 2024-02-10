@@ -57,7 +57,7 @@ export const getStaticProps: GetStaticProps = async ({ locale, draftMode: previe
 
     const countriesData = await gqlClient.pageCountryCollection({
       locale,
-      order: PageCountryOrder.ContinentNameAsc,
+      order: PageCountryOrder.CountryNameAsc,
       preview,
     });
 
