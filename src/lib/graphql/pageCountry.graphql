@@ -15,8 +15,8 @@ fragment PageCountryFields on PageCountry {
   }
 }
 
-query PageCountries($locale: String, $preview: Boolean) {
-  pageCountryCollection(limit: 1, locale: $locale, preview: $preview) {
+query pageCountry($slug: String!, $locale: String, $preview: Boolean){
+  pageCountryCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
     items {
       ...PageCountryFields
     }

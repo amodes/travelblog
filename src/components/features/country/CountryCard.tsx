@@ -7,7 +7,7 @@ export const CountryCard = ({ country }: { country: PageCountry }) => {
   return (
     <>
       {country.slug && (
-        <Link key={country.countryName} href={country.slug}>
+        <Link key={country.countryName} href={`country/${country.slug}`}>
           <div className="h-full w-full sm:h-72 sm:w-72">
             <div className="flex items-center justify-center">
               {country.squareImage && <CtfImage {...country.squareImage} />}

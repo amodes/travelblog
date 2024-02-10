@@ -4,14 +4,13 @@ import {
 } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-import { CountryCard } from '@src/components/features/country/CountryCard';
+import { CountryCardGrid } from '@src/components/features/country/CountryCardGrid';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { PageCountryOrder } from '@src/lib/__generated/sdk';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 import { getServerSideTranslations } from '@src/pages/utils/get-serverside-translations';
-import { CountryCardGrid } from '@src/components/features/country/CountryCardGrid';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const destinations = useContentfulLiveUpdates(props.destinations);
@@ -22,6 +21,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 
   const { title } = destinations;
 
+  // Later when we have a lot of content, we can use this to group countries by continents
   // const continents = groupBy(
   //   countries,
   //   (country: PageCountry) => country.continentName || t('destinationPage.otherArticles'),
@@ -41,12 +41,12 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode: preview }) => {
-  //   if (!params?.slug || !locale) {
-  //     return {
-  //       notFound: true,
-  //       revalidate: revalidateDuration,
-  //     };
-  //   }
+  if (!locale) {
+    return {
+      notFound: true,
+      revalidate: revalidateDuration,
+    };
+  }
 
   const gqlClient = preview ? previewClient : client;
 

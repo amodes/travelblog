@@ -2255,13 +2255,14 @@ export type PageCountryFieldsFragment = { __typename: 'PageCountry', slug?: stri
     & ImageFieldsFragment
   ) | null };
 
-export type PageCountriesQueryVariables = Exact<{
+export type PageCountryQueryVariables = Exact<{
+  slug: Scalars['String'];
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
 }>;
 
 
-export type PageCountriesQuery = { __typename?: 'Query', pageCountryCollection?: { __typename?: 'PageCountryCollection', items: Array<(
+export type PageCountryQuery = { __typename?: 'Query', pageCountryCollection?: { __typename?: 'PageCountryCollection', items: Array<(
       { __typename?: 'PageCountry' }
       & PageCountryFieldsFragment
     ) | null> } | null };
@@ -2603,9 +2604,14 @@ ${ImageFieldsFragmentDoc}
 ${AuthorFieldsFragmentDoc}
 ${RichImageFieldsFragmentDoc}
 ${ReferencePageBlogPostFieldsFragmentDoc}`;
-export const PageCountriesDocument = gql`
-    query PageCountries($locale: String, $preview: Boolean) {
-  pageCountryCollection(limit: 1, locale: $locale, preview: $preview) {
+export const PageCountryDocument = gql`
+    query pageCountry($slug: String!, $locale: String, $preview: Boolean) {
+  pageCountryCollection(
+    limit: 1
+    where: {slug: $slug}
+    locale: $locale
+    preview: $preview
+  ) {
     items {
       ...PageCountryFields
     }
@@ -2690,8 +2696,8 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     pageBlogPostCollection(variables?: PageBlogPostCollectionQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageBlogPostCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageBlogPostCollectionQuery>(PageBlogPostCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageBlogPostCollection', 'query');
     },
-    PageCountries(variables?: PageCountriesQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageCountriesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<PageCountriesQuery>(PageCountriesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'PageCountries', 'query');
+    pageCountry(variables: PageCountryQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageCountryQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageCountryQuery>(PageCountryDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageCountry', 'query');
     },
     pageCountryCollection(variables?: PageCountryCollectionQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageCountryCollectionQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageCountryCollectionQuery>(PageCountryCollectionDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageCountryCollection', 'query');
