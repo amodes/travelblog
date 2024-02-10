@@ -1328,6 +1328,7 @@ export enum PageBlogPostRelatedBlogPostsCollectionOrder {
 /** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
 export type PageCountry = Entry & {
   __typename?: 'PageCountry';
+  bannerImage?: Maybe<Asset>;
   content?: Maybe<PageCountryContent>;
   contentfulMetadata: ContentfulMetadata;
   continentName?: Maybe<Scalars['String']>;
@@ -1338,6 +1339,13 @@ export type PageCountry = Entry & {
   slug?: Maybe<Scalars['String']>;
   squareImage?: Maybe<Asset>;
   sys: Sys;
+};
+
+
+/** A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry) */
+export type PageCountryBannerImageArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -1440,6 +1448,7 @@ export type PageCountryContentResources = {
 export type PageCountryFilter = {
   AND?: InputMaybe<Array<InputMaybe<PageCountryFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<PageCountryFilter>>>;
+  bannerImage_exists?: InputMaybe<Scalars['Boolean']>;
   content_contains?: InputMaybe<Scalars['String']>;
   content_exists?: InputMaybe<Scalars['Boolean']>;
   content_not_contains?: InputMaybe<Scalars['String']>;
@@ -2136,6 +2145,7 @@ export type CfPageBlogPostNestedFilter = {
 export type CfPageCountryNestedFilter = {
   AND?: InputMaybe<Array<InputMaybe<CfPageCountryNestedFilter>>>;
   OR?: InputMaybe<Array<InputMaybe<CfPageCountryNestedFilter>>>;
+  bannerImage_exists?: InputMaybe<Scalars['Boolean']>;
   content_contains?: InputMaybe<Scalars['String']>;
   content_exists?: InputMaybe<Scalars['Boolean']>;
   content_not_contains?: InputMaybe<Scalars['String']>;
@@ -2251,6 +2261,9 @@ export type PageCountryFieldsFragment = { __typename: 'PageCountry', slug?: stri
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
   ) | null, squareImage?: (
+    { __typename?: 'Asset' }
+    & ImageFieldsFragment
+  ) | null, bannerImage?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null, relatedBlogPostsCollection?: { __typename?: 'PageCountryRelatedBlogPostsCollection', items: Array<(
@@ -2504,6 +2517,9 @@ export const PageCountryFieldsFragmentDoc = gql`
   countryName
   continentName
   squareImage {
+    ...ImageFields
+  }
+  bannerImage {
     ...ImageFields
   }
   relatedBlogPostsCollection(limit: 10) {

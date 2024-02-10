@@ -13,6 +13,9 @@ fragment PageCountryFields on PageCountry {
   squareImage {
     ...ImageFields
   }
+  bannerImage {
+    ...ImageFields
+  }
   relatedBlogPostsCollection(limit: 10) {
     items {
       ...ReferencePageBlogPostFields

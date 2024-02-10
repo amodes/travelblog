@@ -910,6 +910,7 @@ enum PageBlogPostRelatedBlogPostsCollectionOrder {
 A page which gives an overview of all the related blog posts and a small general description [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageCountry)
 """
 type PageCountry implements Entry {
+  bannerImage(locale: String, preview: Boolean): Asset
   content(locale: String): PageCountryContent
   contentfulMetadata: ContentfulMetadata!
   continentName(locale: String): String
@@ -960,6 +961,7 @@ type PageCountryContentResources {
 input PageCountryFilter {
   AND: [PageCountryFilter]
   OR: [PageCountryFilter]
+  bannerImage_exists: Boolean
   content_contains: String
   content_exists: Boolean
   content_not_contains: String
@@ -1391,6 +1393,7 @@ input cfPageBlogPostNestedFilter {
 input cfPageCountryNestedFilter {
   AND: [cfPageCountryNestedFilter]
   OR: [cfPageCountryNestedFilter]
+  bannerImage_exists: Boolean
   content_contains: String
   content_exists: Boolean
   content_not_contains: String

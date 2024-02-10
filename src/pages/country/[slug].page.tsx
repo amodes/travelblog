@@ -4,6 +4,7 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getServerSideTranslations } from '../utils/get-serverside-translations';
 
 import { ArticleTileGrid } from '@src/components/features/article';
+import { Banner } from '@src/components/features/banners/Banner';
 import { SeoFields } from '@src/components/features/seo';
 import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
@@ -18,8 +19,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       {countryPage.seoFields && <SeoFields {...countryPage.seoFields} />}
-      <Container className="my-8  md:mb-10 lg:mb-16">
-        <h2 className="mb-4 md:mb-6">{countryPage.countryName}</h2>
+      <Container className="my-8 md:mb-10 lg:mb-16">
+        <div className="mb-12">
+          <Banner image={countryPage.bannerImage} bannerText={countryPage.countryName} />
+        </div>
         <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={relatedPosts} />
       </Container>
     </>
