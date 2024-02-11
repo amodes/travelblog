@@ -4,9 +4,10 @@ import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { getServerSideTranslations } from '../utils/get-serverside-translations';
 
 import { ArticleTileGrid } from '@src/components/features/article';
-import { Banner } from '@src/components/features/banners/Banner';
 import { SeoFields } from '@src/components/features/seo';
+import { Banner } from '@src/components/shared/banners/Banner';
 import { Container } from '@src/components/shared/container';
+import { RichTextSection } from '@src/components/shared/textSection/RichTextSection';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
 
@@ -23,7 +24,8 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div className="mb-12">
           <Banner image={countryPage.bannerImage} bannerText={countryPage.countryName} />
         </div>
-        <ArticleTileGrid className="md:grid-cols-2 lg:grid-cols-3" articles={relatedPosts} />
+        <RichTextSection content={countryPage.content} />
+        <ArticleTileGrid className="mt-10 md:grid-cols-2 lg:grid-cols-3" articles={relatedPosts} />
       </Container>
     </>
   );
@@ -63,7 +65,6 @@ export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode
       },
     };
   } catch (e) {
-    console.log('eerrorr', e);
     return {
       notFound: true,
       revalidate: revalidateDuration,

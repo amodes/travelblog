@@ -16,7 +16,7 @@ fragment PageCountryFields on PageCountry {
   bannerImage {
     ...ImageFields
   }
-  relatedBlogPostsCollection(limit: 10) {
+  relatedBlogPostsCollection(limit: 20) {
     items {
       ...ReferencePageBlogPostFields
     }
@@ -27,6 +27,16 @@ query pageCountry($slug: String!, $locale: String, $preview: Boolean) {
   pageCountryCollection(limit: 1, where: { slug: $slug }, locale: $locale, preview: $preview) {
     items {
       ...PageCountryFields
+      content {
+        json
+        links {
+          entries {
+            block {
+              ...RichImageFields
+            }
+          }
+        }
+      }
     }
   }
 }

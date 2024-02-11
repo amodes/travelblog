@@ -1,5 +1,3 @@
-import { ImageProps } from 'next/image';
-
 import { CtfImage } from '@src/components/features/contentful';
 import { ImageFieldsFragment } from '@src/lib/__generated/sdk';
 

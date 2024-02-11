@@ -41,17 +41,17 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params, locale, draftMode: preview }) => {
-  //   if (!params?.slug || !locale) {
-  //     return {
-  //       notFound: true,
-  //       revalidate: revalidateDuration,
-  //     };
-  //   }
+  if (!locale) {
+    return {
+      notFound: true,
+      revalidate: revalidateDuration,
+    };
+  }
 
   const gqlClient = preview ? previewClient : client;
 
   try {
-    const [aboutPageData] = await Promise.all([gqlClient.pageAbout({ locale, preview })]);
+    const aboutPageData = await gqlClient.pageAbout({ locale, preview });
 
     const about = aboutPageData.pageAboutCollection?.items[0];
 
