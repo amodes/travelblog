@@ -230,6 +230,10 @@ $~$
 
 $~$
 
+## Design System
+This app uses Contentful's Forma 36 Design System
+https://f36.contentful.com/tokens/color-system
+
 ## Support
 
 If you have a problem with this Starter Template, post a message in our [Contentful Community Slack](https://www.contentful.com/slack/).
