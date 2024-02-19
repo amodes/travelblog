@@ -20,8 +20,8 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       {countryPage.seoFields && <SeoFields {...countryPage.seoFields} />}
-      <Container className="my-8 md:mb-10 lg:mb-16">
-        <div className="mb-12">
+      <Container className="my-2 md:mb-10 lg:mb-16">
+        <div className="mb-10">
           <Banner image={countryPage.bannerImage} bannerText={countryPage.countryName} />
         </div>
         <RichTextSection content={countryPage.content} />
