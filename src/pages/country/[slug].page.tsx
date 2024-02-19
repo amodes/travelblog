@@ -1,5 +1,6 @@
 import { useContentfulLiveUpdates } from '@contentful/live-preview/react';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
+import { useTranslation } from 'next-i18next';
 
 import { getServerSideTranslations } from '../utils/get-serverside-translations';
 
@@ -13,6 +14,8 @@ import { revalidateDuration } from '@src/pages/utils/constants';
 
 const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   const countryPage = useContentfulLiveUpdates(props.countryPage);
+  const { t } = useTranslation();
+
   const relatedPosts = countryPage?.relatedBlogPostsCollection?.items;
 
   if (!countryPage) return null;
@@ -25,7 +28,10 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <Banner image={countryPage.bannerImage} bannerText={countryPage.countryName} />
         </div>
         <RichTextSection content={countryPage.content} />
-        <ArticleTileGrid className="mt-10 md:grid-cols-2 lg:grid-cols-3" articles={relatedPosts} />
+        <h2 className="mt-10">
+          {countryPage.countryName} {t('countryPage.travelBlogs')}
+        </h2>
+        <ArticleTileGrid className="mt-6 md:grid-cols-2 lg:grid-cols-3" articles={relatedPosts} />
       </Container>
     </>
   );

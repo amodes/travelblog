@@ -9,6 +9,9 @@
   "destinationPage": {
     "otherArticles": "Andere Artikel"
   },
+  "countryPage": {
+    "travelBlogs": "Reiseblog Artikel"
+  },
   "common": {
     "homepage": "Startseite",
     "regionalSettings": "Regionale Einstellungen",

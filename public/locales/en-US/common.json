@@ -9,6 +9,9 @@
   "destinationPage": {
     "otherArticles": "Other articles"
   },
+  "countryPage": {
+    "travelBlogs": "travel blog articles"
+  },
   "common": {
     "regionalSettings": "Regional Settings",
     "homepage": "Homepage",
