@@ -19,6 +19,8 @@ export const Banner = ({
           {...image}
           nextImageProps={{
             className: 'w-full',
+            quality: 90,
+            priority: true,
           }}
         />
         <div className="absolute flex-col items-center justify-center">
