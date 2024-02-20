@@ -24,7 +24,7 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
   return (
     <>
       {destinations.seoFields && <SeoFields {...destinations.seoFields} />}
-      <Container className="my-8 md:mb-10 lg:mb-16">
+      <Container className="md:mb-10 lg:mb-16">
         <CountryCardGrid countries={countries} />
       </Container>
     </>
