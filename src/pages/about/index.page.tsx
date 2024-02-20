@@ -4,8 +4,10 @@ import {
 } from '@contentful/live-preview/react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-import { CtfRichText, CtfImage } from '@src/components/features/contentful';
+import BlogLogoWhite from '@icons/blog-logo-white.svg';
+import { CtfRichText } from '@src/components/features/contentful';
 import { SeoFields } from '@src/components/features/seo';
+import { Banner } from '@src/components/shared/banners/Banner';
 import { Container } from '@src/components/shared/container';
 import { client, previewClient } from '@src/lib/client';
 import { revalidateDuration } from '@src/pages/utils/constants';
@@ -24,15 +26,14 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
       {about.seoFields && <SeoFields {...about.seoFields} />}
       <Container>
         {banner && (
-          <div className="mb-4" {...inspectorProps({ fieldId: 'featuredImage' })}>
-            <CtfImage nextImageProps={{ className: 'object-cover w-full' }} {...banner} />
-          </div>
+          <Banner
+            image={banner}
+            bannerText={title}
+            icon={<BlogLogoWhite className="h-10 w-10 lg:mr-2 lg:h-20 lg:w-20" />}
+            smallMobileFontSize
+          />
         )}
-        <h2 className="mb-4 md:mb-6" {...inspectorProps({ fieldId: 'publishedDate' })}>
-          {title}
-        </h2>
-
-        <div {...inspectorProps({ fieldId: 'content' })}>
+        <div className="mt-6" {...inspectorProps({ fieldId: 'content' })}>
           <CtfRichText json={content?.json} links={content?.links} />
         </div>
       </Container>
