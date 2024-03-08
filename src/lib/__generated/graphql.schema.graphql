@@ -1134,6 +1134,76 @@ enum PageDestinationsOrder {
 }
 
 """
+Page with rich text for the whole imprint page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageImprint)
+"""
+type PageImprint implements Entry {
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): PageImprintLinkingCollections
+  sys: Sys!
+  wholePageContent(locale: String): PageImprintWholePageContent
+}
+
+type PageImprintCollection {
+  items: [PageImprint]!
+  limit: Int!
+  skip: Int!
+  total: Int!
+}
+
+input PageImprintFilter {
+  AND: [PageImprintFilter]
+  OR: [PageImprintFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  wholePageContent_contains: String
+  wholePageContent_exists: Boolean
+  wholePageContent_not_contains: String
+}
+
+type PageImprintLinkingCollections {
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+}
+
+enum PageImprintOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type PageImprintWholePageContent {
+  json: JSON!
+  links: PageImprintWholePageContentLinks!
+}
+
+type PageImprintWholePageContentAssets {
+  block: [Asset]!
+  hyperlink: [Asset]!
+}
+
+type PageImprintWholePageContentEntries {
+  block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
+}
+
+type PageImprintWholePageContentLinks {
+  assets: PageImprintWholePageContentAssets!
+  entries: PageImprintWholePageContentEntries!
+  resources: PageImprintWholePageContentResources!
+}
+
+type PageImprintWholePageContentResources {
+  block: [ResourceLink!]!
+  hyperlink: [ResourceLink!]!
+  inline: [ResourceLink!]!
+}
+
+"""
 To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageLanding)
 """
 type PageLanding implements Entry {
@@ -1211,6 +1281,8 @@ type Query {
   pageCountryCollection(limit: Int = 100, locale: String, order: [PageCountryOrder], preview: Boolean, skip: Int = 0, where: PageCountryFilter): PageCountryCollection
   pageDestinations(id: String!, locale: String, preview: Boolean): PageDestinations
   pageDestinationsCollection(limit: Int = 100, locale: String, order: [PageDestinationsOrder], preview: Boolean, skip: Int = 0, where: PageDestinationsFilter): PageDestinationsCollection
+  pageImprint(id: String!, locale: String, preview: Boolean): PageImprint
+  pageImprintCollection(limit: Int = 100, locale: String, order: [PageImprintOrder], preview: Boolean, skip: Int = 0, where: PageImprintFilter): PageImprintCollection
   pageLanding(id: String!, locale: String, preview: Boolean): PageLanding
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
 }

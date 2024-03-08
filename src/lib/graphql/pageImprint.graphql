@@ -1,0 +1,25 @@
+fragment PageImprintFields on PageImprint {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  wholePageContent {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+}
+
+query pageImprint($locale: String, $preview: Boolean) {
+  pageImprintCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageImprintFields
+    }
+  }
+}

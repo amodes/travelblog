@@ -1679,6 +1679,102 @@ export enum PageDestinationsOrder {
   TitleDesc = 'title_DESC'
 }
 
+/** Page with rich text for the whole imprint page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageImprint) */
+export type PageImprint = Entry & {
+  __typename?: 'PageImprint';
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<PageImprintLinkingCollections>;
+  sys: Sys;
+  wholePageContent?: Maybe<PageImprintWholePageContent>;
+};
+
+
+/** Page with rich text for the whole imprint page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageImprint) */
+export type PageImprintLinkedFromArgs = {
+  allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Page with rich text for the whole imprint page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageImprint) */
+export type PageImprintWholePageContentArgs = {
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type PageImprintCollection = {
+  __typename?: 'PageImprintCollection';
+  items: Array<Maybe<PageImprint>>;
+  limit: Scalars['Int'];
+  skip: Scalars['Int'];
+  total: Scalars['Int'];
+};
+
+export type PageImprintFilter = {
+  AND?: InputMaybe<Array<InputMaybe<PageImprintFilter>>>;
+  OR?: InputMaybe<Array<InputMaybe<PageImprintFilter>>>;
+  contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
+  sys?: InputMaybe<SysFilter>;
+  wholePageContent_contains?: InputMaybe<Scalars['String']>;
+  wholePageContent_exists?: InputMaybe<Scalars['Boolean']>;
+  wholePageContent_not_contains?: InputMaybe<Scalars['String']>;
+};
+
+export type PageImprintLinkingCollections = {
+  __typename?: 'PageImprintLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PageImprintLinkingCollectionsEntryCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+};
+
+export enum PageImprintOrder {
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type PageImprintWholePageContent = {
+  __typename?: 'PageImprintWholePageContent';
+  json: Scalars['JSON'];
+  links: PageImprintWholePageContentLinks;
+};
+
+export type PageImprintWholePageContentAssets = {
+  __typename?: 'PageImprintWholePageContentAssets';
+  block: Array<Maybe<Asset>>;
+  hyperlink: Array<Maybe<Asset>>;
+};
+
+export type PageImprintWholePageContentEntries = {
+  __typename?: 'PageImprintWholePageContentEntries';
+  block: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  inline: Array<Maybe<Entry>>;
+};
+
+export type PageImprintWholePageContentLinks = {
+  __typename?: 'PageImprintWholePageContentLinks';
+  assets: PageImprintWholePageContentAssets;
+  entries: PageImprintWholePageContentEntries;
+  resources: PageImprintWholePageContentResources;
+};
+
+export type PageImprintWholePageContentResources = {
+  __typename?: 'PageImprintWholePageContentResources';
+  block: Array<ResourceLink>;
+  hyperlink: Array<ResourceLink>;
+  inline: Array<ResourceLink>;
+};
+
 /** To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageLanding) */
 export type PageLanding = Entry & {
   __typename?: 'PageLanding';
@@ -1790,6 +1886,8 @@ export type Query = {
   pageCountryCollection?: Maybe<PageCountryCollection>;
   pageDestinations?: Maybe<PageDestinations>;
   pageDestinationsCollection?: Maybe<PageDestinationsCollection>;
+  pageImprint?: Maybe<PageImprint>;
+  pageImprintCollection?: Maybe<PageImprintCollection>;
   pageLanding?: Maybe<PageLanding>;
   pageLandingCollection?: Maybe<PageLandingCollection>;
 };
@@ -1945,6 +2043,23 @@ export type QueryPageDestinationsCollectionArgs = {
   preview?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<PageDestinationsFilter>;
+};
+
+
+export type QueryPageImprintArgs = {
+  id: Scalars['String'];
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+export type QueryPageImprintCollectionArgs = {
+  limit?: InputMaybe<Scalars['Int']>;
+  locale?: InputMaybe<Scalars['String']>;
+  order?: InputMaybe<Array<InputMaybe<PageImprintOrder>>>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageImprintFilter>;
 };
 
 
@@ -2187,13 +2302,13 @@ export type ImageFieldsFragment = { __typename: 'Asset', title?: string | null, 
 export type PageAboutFieldsFragment = { __typename: 'PageAbout', title?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentRichImage' } | (
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
-  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null, banner?: (
+  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageImprint' } | { __typename?: 'PageLanding' } | null, banner?: (
     { __typename?: 'Asset' }
     & ImageFieldsFragment
   ) | null, content?: { __typename?: 'PageAboutContent', json: any, links: { __typename?: 'PageAboutContentLinks', entries: { __typename?: 'PageAboutContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null };
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageImprint' } | { __typename?: 'PageLanding' } | null> } } } | null };
 
 export type PageAboutQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']>;
@@ -2226,7 +2341,7 @@ export type PageBlogPostFieldsFragment = { __typename: 'PageBlogPost', internalN
   ) | null, content?: { __typename?: 'PageBlogPostContent', json: any, links: { __typename?: 'PageBlogPostContentLinks', entries: { __typename?: 'PageBlogPostContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
           { __typename?: 'ComponentRichImage' }
           & RichImageFieldsFragment
-        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageImprint' } | { __typename?: 'PageLanding' } | null> } } } | null, relatedBlogPostsCollection?: { __typename?: 'PageBlogPostRelatedBlogPostsCollection', items: Array<(
       { __typename?: 'PageBlogPost' }
       & ReferencePageBlogPostFieldsFragment
     ) | null> } | null };
@@ -2282,7 +2397,7 @@ export type PageCountryQuery = { __typename?: 'Query', pageCountryCollection?: {
       { __typename?: 'PageCountry', content?: { __typename?: 'PageCountryContent', json: any, links: { __typename?: 'PageCountryContentLinks', entries: { __typename?: 'PageCountryContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
               { __typename?: 'ComponentRichImage' }
               & RichImageFieldsFragment
-            ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null> } } } | null }
+            ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageImprint' } | { __typename?: 'PageLanding' } | null> } } } | null }
       & PageCountryFieldsFragment
     ) | null> } | null };
 
@@ -2303,7 +2418,7 @@ export type PageCountryCollectionQuery = { __typename?: 'Query', pageCountryColl
 export type PageDestinationFieldsFragment = { __typename: 'PageDestinations', title?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: { __typename?: 'ComponentAuthor' } | { __typename?: 'ComponentRichImage' } | (
     { __typename?: 'ComponentSeo' }
     & SeoFieldsFragment
-  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageLanding' } | null };
+  ) | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageImprint' } | { __typename?: 'PageLanding' } | null };
 
 export type PageDestinationsQueryVariables = Exact<{
   locale?: InputMaybe<Scalars['String']>;
@@ -2314,6 +2429,22 @@ export type PageDestinationsQueryVariables = Exact<{
 export type PageDestinationsQuery = { __typename?: 'Query', pageDestinationsCollection?: { __typename?: 'PageDestinationsCollection', items: Array<(
       { __typename?: 'PageDestinations' }
       & PageDestinationFieldsFragment
+    ) | null> } | null };
+
+export type PageImprintFieldsFragment = { __typename: 'PageImprint', sys: { __typename?: 'Sys', id: string, spaceId: string }, wholePageContent?: { __typename?: 'PageImprintWholePageContent', json: any, links: { __typename?: 'PageImprintWholePageContentLinks', entries: { __typename?: 'PageImprintWholePageContentEntries', block: Array<{ __typename?: 'ComponentAuthor' } | (
+          { __typename?: 'ComponentRichImage' }
+          & RichImageFieldsFragment
+        ) | { __typename?: 'ComponentSeo' } | { __typename?: 'PageAbout' } | { __typename?: 'PageBlogPost' } | { __typename?: 'PageCountry' } | { __typename?: 'PageDestinations' } | { __typename?: 'PageImprint' } | { __typename?: 'PageLanding' } | null> } } } | null };
+
+export type PageImprintQueryVariables = Exact<{
+  locale?: InputMaybe<Scalars['String']>;
+  preview?: InputMaybe<Scalars['Boolean']>;
+}>;
+
+
+export type PageImprintQuery = { __typename?: 'Query', pageImprintCollection?: { __typename?: 'PageImprintCollection', items: Array<(
+      { __typename?: 'PageImprint' }
+      & PageImprintFieldsFragment
     ) | null> } | null };
 
 export type PageLandingFieldsFragment = { __typename: 'PageLanding', internalName?: string | null, sys: { __typename?: 'Sys', id: string, spaceId: string }, seoFields?: (
@@ -2545,6 +2676,25 @@ export const PageDestinationFieldsFragmentDoc = gql`
   }
 }
     `;
+export const PageImprintFieldsFragmentDoc = gql`
+    fragment PageImprintFields on PageImprint {
+  __typename
+  sys {
+    id
+    spaceId
+  }
+  wholePageContent {
+    json
+    links {
+      entries {
+        block {
+          ...RichImageFields
+        }
+      }
+    }
+  }
+}
+    `;
 export const PageLandingFieldsFragmentDoc = gql`
     fragment PageLandingFields on PageLanding {
   __typename
@@ -2690,6 +2840,17 @@ export const PageDestinationsDocument = gql`
     ${PageDestinationFieldsFragmentDoc}
 ${SeoFieldsFragmentDoc}
 ${ImageFieldsFragmentDoc}`;
+export const PageImprintDocument = gql`
+    query pageImprint($locale: String, $preview: Boolean) {
+  pageImprintCollection(limit: 1, locale: $locale, preview: $preview) {
+    items {
+      ...PageImprintFields
+    }
+  }
+}
+    ${PageImprintFieldsFragmentDoc}
+${RichImageFieldsFragmentDoc}
+${ImageFieldsFragmentDoc}`;
 export const PageLandingDocument = gql`
     query pageLanding($locale: String, $preview: Boolean) {
   pageLandingCollection(limit: 1, locale: $locale, preview: $preview) {
@@ -2746,6 +2907,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     pageDestinations(variables?: PageDestinationsQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageDestinationsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageDestinationsQuery>(PageDestinationsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageDestinations', 'query');
+    },
+    pageImprint(variables?: PageImprintQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageImprintQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<PageImprintQuery>(PageImprintDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageImprint', 'query');
     },
     pageLanding(variables?: PageLandingQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<PageLandingQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<PageLandingQuery>(PageLandingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'pageLanding', 'query');
