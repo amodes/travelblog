@@ -4,31 +4,30 @@
 
 @layer base {
   body {
-    @apply text-base text-gray800 md:text-base bg-gray100;
+    @apply bg-gray100 text-base text-gray800 md:text-base;
   }
-
+  /** The styles don't apply to rich text content. Therefore you need to touch CtfRichText.tsx **/
   .h1,
   h1 {
-    @apply text-xl leading-tighter font-normal md:text-4xl;
+    @apply text-xl font-normal leading-tighter md:text-4xl;
   }
 
   .h2,
   h2 {
-    @apply text-xl leading-tight font-semibold md:text-3xl font-normal;
+    @apply text-xl font-semibold font-normal leading-tight md:text-3xl;
   }
 
   .h3,
   h3 {
-    @apply text-base leading-relaxed font-semibold md:text-xl font-normal;
+    @apply text-base font-semibold font-normal leading-relaxed md:text-xl;
   }
 
   .h4,
   h4 {
-    @apply text-xs leading-normal font-semibold md:text-base font-normal;
+    @apply text-xs font-semibold font-normal leading-normal md:text-base;
   }
 
   p {
-    @apply tracking-snug font-normal leading-snug md:leading-normal md:text-base;
+    @apply font-normal leading-snug tracking-snug md:text-base md:leading-normal;
   }
 }
-
