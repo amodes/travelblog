@@ -8,7 +8,11 @@ import { useRouter } from 'next/router';
 
 import { Layout } from '@src/components/templates/layout';
 
-const poppins = Poppins({ subsets: ['latin'], weight: '400', variable: '--font-poppins' });
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['200', '400', '500', '600', '800'],
+  variable: '--font-poppins',
+});
 
 const App = ({ Component, pageProps }: AppProps) => {
   const { locale } = useRouter();
