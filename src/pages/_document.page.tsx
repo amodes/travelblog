@@ -12,12 +12,12 @@ export default function Document() {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
         <meta name="theme-color" content="#ffffff" />
-        <GoogleTagManager gtmId={`${process.env.GOOGLE_TAG_MANAGER_ID}`} />
       </Head>
       <body>
         <Main />
         <NextScript />
       </body>
+      <GoogleTagManager gtmId={`${process.env.GOOGLE_TAG_MANAGER_ID}`} />
     </Html>
   );
 }
