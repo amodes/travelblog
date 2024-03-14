@@ -31,7 +31,7 @@ module.exports = {
         tighter: 1.1,
       },
       fontFamily: {
-        sans: ['var(--font-poppins)', ...fontFamily.sans],
+        sans: ['var(--font-jost)', ...fontFamily.sans],
       },
     },
   },
