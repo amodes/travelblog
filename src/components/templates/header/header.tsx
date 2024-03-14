@@ -15,7 +15,7 @@ export const Header = () => {
           <Link href="/" title={t('common.homepage')}>
             <div className="flex items-center">
               <BlogLogo className="h-10 w-10 lg:mr-2 lg:h-12 lg:w-12" />
-              <h2 className="hidden md:block">Unlimited Hills</h2>
+              <h2 className="ml-4 hidden md:block">Unlimited Hills</h2>
             </div>
           </Link>
           <Link className="mr-2" href="/">
