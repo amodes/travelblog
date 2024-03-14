@@ -12,9 +12,14 @@ export const Footer = () => {
         <div>
           <div className="max-w-4xl">{t('footer.description')}</div>
         </div>
-        <Link className="flex flex-col" href={`/imprint`}>
-          <div className="max-w-4xl">{t('footer.imprint')}</div>
-        </Link>
+        <div>
+          <Link href="/about" className="sm:hidden">
+            <div className="max-w-4xl">{t('header.about')}</div>
+          </Link>
+          <Link className="flex flex-col" href={`/imprint`}>
+            <div className="max-w-4xl">{t('footer.imprint')}</div>
+          </Link>
+        </div>
       </Container>
     </footer>
   );

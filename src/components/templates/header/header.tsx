@@ -24,7 +24,7 @@ export const Header = () => {
           <Link className="mr-2" href="/destinations">
             <h3>{t('header.destinations')}</h3>
           </Link>
-          <Link href="/about">
+          <Link href="/about" className="hidden md:block">
             <h3>{t('header.about')}</h3>
           </Link>
           <LanguageSelector />
