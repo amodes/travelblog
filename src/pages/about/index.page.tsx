@@ -29,11 +29,11 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
           <Banner
             image={banner}
             bannerText={title}
-            icon={<BlogLogoWhite className="h-10 w-10 lg:mr-2 lg:h-20 lg:w-20" />}
+            icon={<BlogLogoWhite className="h-6 w-6 lg:mr-2 lg:h-20 lg:w-20" />}
             smallMobileFontSize
           />
         )}
-        <div className="mt-6" {...inspectorProps({ fieldId: 'content' })}>
+        <div className="mt-10" {...inspectorProps({ fieldId: 'content' })}>
           <CtfRichText json={content?.json} links={content?.links} />
         </div>
       </Container>

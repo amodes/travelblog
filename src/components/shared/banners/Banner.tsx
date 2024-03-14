@@ -26,7 +26,7 @@ export const Banner = ({
         <div className="absolute flex-col items-center justify-center">
           <h3
             className={`${
-              smallMobileFontSize ? 'text-3xl ' : 'text-4xl '
+              smallMobileFontSize ? 'text-xl ' : 'text-4xl '
             }lg:text-6xl text-colorWhite`}
           >
             {bannerText?.toLocaleUpperCase()}

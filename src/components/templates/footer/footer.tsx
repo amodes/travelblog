@@ -9,9 +9,7 @@ export const Footer = () => {
   return (
     <footer className="border-t-color mt-10 border-t border-gray400">
       <Container className="flex gap-x-10 py-8">
-        <div>
-          <div className="max-w-4xl">{t('footer.description')}</div>
-        </div>
+        <div className="max-w-4xl">{t('footer.description')}</div>
         <div>
           <Link href="/about" className="sm:hidden">
             <div className="max-w-4xl">{t('header.about')}</div>

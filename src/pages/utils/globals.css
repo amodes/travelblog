@@ -28,6 +28,6 @@
   }
 
   p {
-    @apply font-normal leading-snug tracking-snug md:text-base md:leading-normal;
+    @apply font-normal leading-snug tracking-snug md:text-lg md:leading-normal;
   }
 }
