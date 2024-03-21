@@ -33,9 +33,9 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
             smallMobileFontSize
           />
         )}
-        <div className="mt-10" {...inspectorProps({ fieldId: 'content' })}>
+        <Container className="mt-8 max-w-4xl" {...inspectorProps({ fieldId: 'content' })}>
           <CtfRichText json={content?.json} links={content?.links} />
-        </div>
+        </Container>
       </Container>
     </>
   );
