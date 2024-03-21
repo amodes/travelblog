@@ -8,7 +8,7 @@ type Content = {
 
 export const RichTextSection = ({ content }: { content: Content }) => {
   return (
-    <div className="border-t border-b border-gray400 py-4 text-center">
+    <div className="border-t border-b border-gray400 py-4">
       <CtfRichText json={content?.json} links={content?.links} />
     </div>
   );

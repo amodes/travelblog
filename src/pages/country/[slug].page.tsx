@@ -27,7 +27,9 @@ const Page = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
         <div className="mb-10">
           <Banner image={countryPage.bannerImage} bannerText={countryPage.countryName} />
         </div>
-        <RichTextSection content={countryPage.content} />
+        <Container className="mt-8 max-w-4xl">
+          <RichTextSection content={countryPage.content} />
+        </Container>
         <h2 className="mt-10">
           {countryPage.countryName} {t('countryPage.travelBlogs')}
         </h2>
