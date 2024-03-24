@@ -37,8 +37,12 @@ export const contentfulBaseRichTextOptions = ({ links }: ContentfulRichTextInter
 
       return <EmbeddedEntry {...entry} />;
     },
-    [BLOCKS.HEADING_1]: (node, children) => <h1 className="text-4xl font-normal">{children}</h1>,
-    [BLOCKS.HEADING_2]: (node, children) => <h2 className="text-3xl font-normal">{children}</h2>,
+    [BLOCKS.HEADING_1]: (node, children) => (
+      <h1 className="text-3xl font-normal md:text-4xl">{children}</h1>
+    ),
+    [BLOCKS.HEADING_2]: (node, children) => (
+      <h2 className="text-2xl font-normal md:text-3xl">{children}</h2>
+    ),
     [BLOCKS.HEADING_3]: (node, children) => <h3 className="text-xl font-normal">{children}</h3>,
     [BLOCKS.HEADING_4]: (node, children) => <h4 className="font-normal">{children}</h4>,
     [BLOCKS.HEADING_5]: (node, children) => <h5 className="font-normal">{children}</h5>,
