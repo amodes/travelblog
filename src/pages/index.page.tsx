@@ -24,16 +24,11 @@ const HomePage = (props: InferGetStaticPropsType<typeof getStaticProps>) => {
     <>
       {page.seoFields && <SeoFields {...page.seoFields} />}
       <Container>
+        <h2 className="mb-4 md:mb-6 md:hidden">{t('landingPage.featuredArticle')}</h2>
         <Link href={`/articles/${page.featuredBlogPost.slug}`}>
           <ArticleHero article={page.featuredBlogPost} />
         </Link>
       </Container>
-
-      {/* Tutorial: contentful-and-the-starter-template.md */}
-      {/* Uncomment the line below to make the Greeting field available to render */}
-      {/*<Container>*/}
-      {/*  <div className="my-5 bg-colorTextLightest p-5 text-colorBlueLightest">{page.greeting}</div>*/}
-      {/*</Container>*/}
 
       <Container className="my-8  md:mb-10 lg:mb-16">
         <h2 className="mb-4 md:mb-6">{t('landingPage.latestArticles')}</h2>

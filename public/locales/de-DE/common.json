@@ -4,7 +4,8 @@
     "featured": "featured"
   },
   "landingPage": {
-    "latestArticles": "Neueste Artikel"
+    "latestArticles": "Neueste Artikel",
+    "featuredArticle": "Top Artikel"
   },
   "destinationPage": {
     "otherArticles": "Andere Artikel"
