@@ -11,11 +11,17 @@ export const ArticleAuthor = ({ article }: ArticleAuthorProps) => {
   const { author } = article;
   const inspectorProps = useContentfulInspectorMode({ entryId: author?.sys.id });
 
+  if (!author) {
+    // We return empty div to not mess up space-between alignment between avatar and date
+    return <div />;
+  }
+
   return (
     <div className="flex items-center">
       <div
         className="mr-2 overflow-hidden rounded-full border border-blue500"
-        {...inspectorProps({ fieldId: 'avatar' })}>
+        {...inspectorProps({ fieldId: 'avatar' })}
+      >
         {author?.avatar && (
           <CtfImage
             nextImageProps={{
