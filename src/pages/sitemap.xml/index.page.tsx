@@ -9,6 +9,11 @@ import { client } from '@src/lib/client';
 type SitemapFieldsWithoutTypename = Omit<SitemapPagesFieldsFragment, '__typename'>;
 type SitemapPageCollection = SitemapFieldsWithoutTypename[keyof SitemapFieldsWithoutTypename];
 
+const typeNameToUrlBaseMap = {
+  PageBlogPost: 'articles',
+  PageCountry: 'country',
+};
+
 export const getServerSideProps: GetServerSideProps = async ctx => {
   const { locales } = ctx;
 
@@ -23,9 +28,10 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
         pageCollection?.items.map(item => {
           const localeForUrl =
             locales?.[index] === ctx.defaultLocale ? undefined : locales?.[index];
+          const urlCenter = typeNameToUrlBaseMap[item.__typename];
 
           const url = new URL(
-            path.join(localeForUrl || '', item?.slug || ''),
+            path.join(localeForUrl || '', urlCenter || '', item?.slug || ''),
             process.env.NEXT_PUBLIC_BASE_URL!,
           ).toString();
           return item && !item.seoFields?.excludeFromSitemap

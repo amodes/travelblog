@@ -876,6 +876,7 @@ export type PageAbout = Entry & {
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<PageAboutLinkingCollections>;
   seoFields?: Maybe<Entry>;
+  slug?: Maybe<Scalars['String']>;
   sys: Sys;
   title?: Maybe<Scalars['String']>;
 };
@@ -904,6 +905,12 @@ export type PageAboutLinkedFromArgs = {
 export type PageAboutSeoFieldsArgs = {
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** The About page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageAbout) */
+export type PageAboutSlugArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -948,9 +955,24 @@ export type PageAboutContentLinks = {
 
 export type PageAboutContentResources = {
   __typename?: 'PageAboutContentResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<PageAboutContentResourcesBlock>;
+  hyperlink: Array<PageAboutContentResourcesHyperlink>;
+  inline: Array<PageAboutContentResourcesInline>;
+};
+
+export type PageAboutContentResourcesBlock = ResourceLink & {
+  __typename?: 'PageAboutContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type PageAboutContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'PageAboutContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type PageAboutContentResourcesInline = ResourceLink & {
+  __typename?: 'PageAboutContentResourcesInline';
+  sys: ResourceSys;
 };
 
 export type PageAboutFilter = {
@@ -962,6 +984,13 @@ export type PageAboutFilter = {
   content_not_contains?: InputMaybe<Scalars['String']>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   seoFields_exists?: InputMaybe<Scalars['Boolean']>;
+  slug?: InputMaybe<Scalars['String']>;
+  slug_contains?: InputMaybe<Scalars['String']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not?: InputMaybe<Scalars['String']>;
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']>;
   title_contains?: InputMaybe<Scalars['String']>;
@@ -986,6 +1015,8 @@ export type PageAboutLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum PageAboutOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1128,9 +1159,24 @@ export type PageBlogPostContentLinks = {
 
 export type PageBlogPostContentResources = {
   __typename?: 'PageBlogPostContentResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<PageBlogPostContentResourcesBlock>;
+  hyperlink: Array<PageBlogPostContentResourcesHyperlink>;
+  inline: Array<PageBlogPostContentResourcesInline>;
+};
+
+export type PageBlogPostContentResourcesBlock = ResourceLink & {
+  __typename?: 'PageBlogPostContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type PageBlogPostContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'PageBlogPostContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type PageBlogPostContentResourcesInline = ResourceLink & {
+  __typename?: 'PageBlogPostContentResourcesInline';
+  sys: ResourceSys;
 };
 
 export type PageBlogPostFilter = {
@@ -1440,9 +1486,24 @@ export type PageCountryContentLinks = {
 
 export type PageCountryContentResources = {
   __typename?: 'PageCountryContentResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<PageCountryContentResourcesBlock>;
+  hyperlink: Array<PageCountryContentResourcesHyperlink>;
+  inline: Array<PageCountryContentResourcesInline>;
+};
+
+export type PageCountryContentResourcesBlock = ResourceLink & {
+  __typename?: 'PageCountryContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type PageCountryContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'PageCountryContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type PageCountryContentResourcesInline = ResourceLink & {
+  __typename?: 'PageCountryContentResourcesInline';
+  sys: ResourceSys;
 };
 
 export type PageCountryFilter = {
@@ -1506,6 +1567,8 @@ export type PageCountryLinkingCollectionsPageDestinationsCollectionArgs = {
 };
 
 export enum PageCountryLinkingCollectionsPageDestinationsCollectionOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1569,6 +1632,7 @@ export type PageDestinations = Entry & {
   countriesCollection?: Maybe<PageDestinationsCountriesCollection>;
   linkedFrom?: Maybe<PageDestinationsLinkingCollections>;
   seoFields?: Maybe<Entry>;
+  slug?: Maybe<Scalars['String']>;
   sys: Sys;
   title?: Maybe<Scalars['String']>;
 };
@@ -1595,6 +1659,12 @@ export type PageDestinationsLinkedFromArgs = {
 export type PageDestinationsSeoFieldsArgs = {
   locale?: InputMaybe<Scalars['String']>;
   preview?: InputMaybe<Scalars['Boolean']>;
+};
+
+
+/** A page to find blog posts by destinations [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageDestinations) */
+export type PageDestinationsSlugArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -1643,6 +1713,13 @@ export type PageDestinationsFilter = {
   countries?: InputMaybe<CfPageCountryNestedFilter>;
   countriesCollection_exists?: InputMaybe<Scalars['Boolean']>;
   seoFields_exists?: InputMaybe<Scalars['Boolean']>;
+  slug?: InputMaybe<Scalars['String']>;
+  slug_contains?: InputMaybe<Scalars['String']>;
+  slug_exists?: InputMaybe<Scalars['Boolean']>;
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  slug_not?: InputMaybe<Scalars['String']>;
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   sys?: InputMaybe<SysFilter>;
   title?: InputMaybe<Scalars['String']>;
   title_contains?: InputMaybe<Scalars['String']>;
@@ -1667,6 +1744,8 @@ export type PageDestinationsLinkingCollectionsEntryCollectionArgs = {
 };
 
 export enum PageDestinationsOrder {
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1685,6 +1764,7 @@ export type PageImprint = Entry & {
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<PageImprintLinkingCollections>;
   sys: Sys;
+  title?: Maybe<Scalars['String']>;
   wholePageContent?: Maybe<PageImprintWholePageContent>;
 };
 
@@ -1692,6 +1772,12 @@ export type PageImprint = Entry & {
 /** Page with rich text for the whole imprint page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageImprint) */
 export type PageImprintLinkedFromArgs = {
   allowedLocales?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+/** Page with rich text for the whole imprint page [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageImprint) */
+export type PageImprintTitleArgs = {
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -1713,6 +1799,13 @@ export type PageImprintFilter = {
   OR?: InputMaybe<Array<InputMaybe<PageImprintFilter>>>;
   contentfulMetadata?: InputMaybe<ContentfulMetadataFilter>;
   sys?: InputMaybe<SysFilter>;
+  title?: InputMaybe<Scalars['String']>;
+  title_contains?: InputMaybe<Scalars['String']>;
+  title_exists?: InputMaybe<Scalars['Boolean']>;
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  title_not?: InputMaybe<Scalars['String']>;
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   wholePageContent_contains?: InputMaybe<Scalars['String']>;
   wholePageContent_exists?: InputMaybe<Scalars['Boolean']>;
   wholePageContent_not_contains?: InputMaybe<Scalars['String']>;
@@ -1739,7 +1832,9 @@ export enum PageImprintOrder {
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC'
 }
 
 export type PageImprintWholePageContent = {
@@ -1770,9 +1865,24 @@ export type PageImprintWholePageContentLinks = {
 
 export type PageImprintWholePageContentResources = {
   __typename?: 'PageImprintWholePageContentResources';
-  block: Array<ResourceLink>;
-  hyperlink: Array<ResourceLink>;
-  inline: Array<ResourceLink>;
+  block: Array<PageImprintWholePageContentResourcesBlock>;
+  hyperlink: Array<PageImprintWholePageContentResourcesHyperlink>;
+  inline: Array<PageImprintWholePageContentResourcesInline>;
+};
+
+export type PageImprintWholePageContentResourcesBlock = ResourceLink & {
+  __typename?: 'PageImprintWholePageContentResourcesBlock';
+  sys: ResourceSys;
+};
+
+export type PageImprintWholePageContentResourcesHyperlink = ResourceLink & {
+  __typename?: 'PageImprintWholePageContentResourcesHyperlink';
+  sys: ResourceSys;
+};
+
+export type PageImprintWholePageContentResourcesInline = ResourceLink & {
+  __typename?: 'PageImprintWholePageContentResourcesInline';
+  sys: ResourceSys;
 };
 
 /** To have an entry point for the app (e.g. Homepage) [See type definition](https://app.contentful.com/spaces/u0szkbddg3gy/content_types/pageLanding) */
@@ -2080,14 +2190,12 @@ export type QueryPageLandingCollectionArgs = {
 };
 
 export type ResourceLink = {
-  __typename?: 'ResourceLink';
   sys: ResourceSys;
 };
 
 export type ResourceSys = {
   __typename?: 'ResourceSys';
   linkType: Scalars['String'];
-  type: Scalars['String'];
   urn: Scalars['String'];
 };
 
@@ -2487,7 +2595,7 @@ export type SeoFieldsFragment = { __typename: 'ComponentSeo', pageTitle?: string
       & ImageFieldsFragment
     ) | null> } | null };
 
-export type SitemapPagesFieldsFragment = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<{ __typename?: 'PageBlogPost', slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, pageLandingCollection?: { __typename?: 'PageLandingCollection', items: Array<{ __typename?: 'PageLanding', sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null };
+export type SitemapPagesFieldsFragment = { __typename?: 'Query', pageBlogPostCollection?: { __typename?: 'PageBlogPostCollection', items: Array<{ __typename: 'PageBlogPost', slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, pageLandingCollection?: { __typename?: 'PageLandingCollection', items: Array<{ __typename: 'PageLanding', sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, pageAboutCollection?: { __typename?: 'PageAboutCollection', items: Array<{ __typename: 'PageAbout', slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, pageDestinationsCollection?: { __typename?: 'PageDestinationsCollection', items: Array<{ __typename: 'PageDestinations', slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null, pageCountryCollection?: { __typename?: 'PageCountryCollection', items: Array<{ __typename: 'PageCountry', slug?: string | null, sys: { __typename?: 'Sys', publishedAt?: any | null } } | null> } | null };
 
 export type SitemapPagesQueryVariables = Exact<{
   locale: Scalars['String'];
@@ -2715,6 +2823,7 @@ export const SitemapPagesFieldsFragmentDoc = gql`
     fragment sitemapPagesFields on Query {
   pageBlogPostCollection(limit: 100, locale: $locale) {
     items {
+      __typename
       slug
       sys {
         publishedAt
@@ -2723,6 +2832,34 @@ export const SitemapPagesFieldsFragmentDoc = gql`
   }
   pageLandingCollection(limit: 1, locale: $locale) {
     items {
+      __typename
+      sys {
+        publishedAt
+      }
+    }
+  }
+  pageAboutCollection(limit: 1, locale: $locale) {
+    items {
+      __typename
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+  pageDestinationsCollection(limit: 1, locale: $locale) {
+    items {
+      __typename
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+  pageCountryCollection(limit: 30, locale: $locale) {
+    items {
+      __typename
+      slug
       sys {
         publishedAt
       }

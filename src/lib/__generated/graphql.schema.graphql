@@ -622,6 +622,7 @@ type PageAbout implements Entry {
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): PageAboutLinkingCollections
   seoFields(locale: String, preview: Boolean): Entry
+  slug(locale: String): String
   sys: Sys!
   title(locale: String): String
 }
@@ -656,9 +657,21 @@ type PageAboutContentLinks {
 }
 
 type PageAboutContentResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
+  block: [PageAboutContentResourcesBlock!]!
+  hyperlink: [PageAboutContentResourcesHyperlink!]!
+  inline: [PageAboutContentResourcesInline!]!
+}
+
+type PageAboutContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageAboutContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageAboutContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 input PageAboutFilter {
@@ -670,6 +683,13 @@ input PageAboutFilter {
   content_not_contains: String
   contentfulMetadata: ContentfulMetadataFilter
   seoFields_exists: Boolean
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -685,6 +705,8 @@ type PageAboutLinkingCollections {
 }
 
 enum PageAboutOrder {
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -746,9 +768,21 @@ type PageBlogPostContentLinks {
 }
 
 type PageBlogPostContentResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
+  block: [PageBlogPostContentResourcesBlock!]!
+  hyperlink: [PageBlogPostContentResourcesHyperlink!]!
+  inline: [PageBlogPostContentResourcesInline!]!
+}
+
+type PageBlogPostContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageBlogPostContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageBlogPostContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 input PageBlogPostFilter {
@@ -953,9 +987,21 @@ type PageCountryContentLinks {
 }
 
 type PageCountryContentResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
+  block: [PageCountryContentResourcesBlock!]!
+  hyperlink: [PageCountryContentResourcesHyperlink!]!
+  inline: [PageCountryContentResourcesInline!]!
+}
+
+type PageCountryContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageCountryContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageCountryContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 input PageCountryFilter {
@@ -1001,6 +1047,8 @@ type PageCountryLinkingCollections {
 }
 
 enum PageCountryLinkingCollectionsPageDestinationsCollectionOrder {
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -1064,6 +1112,7 @@ type PageDestinations implements Entry {
   countriesCollection(limit: Int = 100, locale: String, order: [PageDestinationsCountriesCollectionOrder], preview: Boolean, skip: Int = 0, where: PageCountryFilter): PageDestinationsCountriesCollection
   linkedFrom(allowedLocales: [String]): PageDestinationsLinkingCollections
   seoFields(locale: String, preview: Boolean): Entry
+  slug(locale: String): String
   sys: Sys!
   title(locale: String): String
 }
@@ -1106,6 +1155,13 @@ input PageDestinationsFilter {
   countries: cfPageCountryNestedFilter
   countriesCollection_exists: Boolean
   seoFields_exists: Boolean
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
   sys: SysFilter
   title: String
   title_contains: String
@@ -1121,6 +1177,8 @@ type PageDestinationsLinkingCollections {
 }
 
 enum PageDestinationsOrder {
+  slug_ASC
+  slug_DESC
   sys_firstPublishedAt_ASC
   sys_firstPublishedAt_DESC
   sys_id_ASC
@@ -1140,6 +1198,7 @@ type PageImprint implements Entry {
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): PageImprintLinkingCollections
   sys: Sys!
+  title(locale: String): String
   wholePageContent(locale: String): PageImprintWholePageContent
 }
 
@@ -1155,6 +1214,13 @@ input PageImprintFilter {
   OR: [PageImprintFilter]
   contentfulMetadata: ContentfulMetadataFilter
   sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
   wholePageContent_contains: String
   wholePageContent_exists: Boolean
   wholePageContent_not_contains: String
@@ -1173,6 +1239,8 @@ enum PageImprintOrder {
   sys_publishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 type PageImprintWholePageContent {
@@ -1198,9 +1266,21 @@ type PageImprintWholePageContentLinks {
 }
 
 type PageImprintWholePageContentResources {
-  block: [ResourceLink!]!
-  hyperlink: [ResourceLink!]!
-  inline: [ResourceLink!]!
+  block: [PageImprintWholePageContentResourcesBlock!]!
+  hyperlink: [PageImprintWholePageContentResourcesHyperlink!]!
+  inline: [PageImprintWholePageContentResourcesInline!]!
+}
+
+type PageImprintWholePageContentResourcesBlock implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageImprintWholePageContentResourcesHyperlink implements ResourceLink {
+  sys: ResourceSys!
+}
+
+type PageImprintWholePageContentResourcesInline implements ResourceLink {
+  sys: ResourceSys!
 }
 
 """
@@ -1287,13 +1367,12 @@ type Query {
   pageLandingCollection(limit: Int = 100, locale: String, order: [PageLandingOrder], preview: Boolean, skip: Int = 0, where: PageLandingFilter): PageLandingCollection
 }
 
-type ResourceLink {
+interface ResourceLink {
   sys: ResourceSys!
 }
 
 type ResourceSys {
   linkType: String!
-  type: String!
   urn: String!
 }
 

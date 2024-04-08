@@ -1,6 +1,7 @@
 fragment sitemapPagesFields on Query {
   pageBlogPostCollection(limit: 100, locale: $locale) {
     items {
+      __typename
       slug
       sys {
         publishedAt
@@ -9,13 +10,40 @@ fragment sitemapPagesFields on Query {
   }
   pageLandingCollection(limit: 1, locale: $locale) {
     items {
+      __typename
+      sys {
+        publishedAt
+      }
+    }
+  }
+  pageAboutCollection(limit: 1, locale: $locale) {
+    items {
+      __typename
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+  pageDestinationsCollection(limit: 1, locale: $locale) {
+    items {
+      __typename
+      slug
+      sys {
+        publishedAt
+      }
+    }
+  }
+  pageCountryCollection(limit: 30, locale: $locale) {
+    items {
+      __typename
+      slug
       sys {
         publishedAt
       }
     }
   }
 }
-
 
 query sitemapPages($locale: String!) {
   ...sitemapPagesFields
