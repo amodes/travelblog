@@ -18,9 +18,9 @@ $~$
 ![unlimitedhills.com lighthouse score](lighthouse-score.png 'unlimitedhills.com lighthouse score')
 - Composable content through powerful & flexible content modeling.
 - Localization ready.
-- Incremental Static Regeneration with Next.js[^1].
-- Generation of GraphQL[^2] typed code (schema, and types), in sync with the content types through graphql-codegen[^3].
-- Enhanced Developer Experience with TypeScript[^4].
+- Incremental Static Regeneration with Next.js.
+- Generation of GraphQL typed code (schema, and types), in sync with the content types through graphql-codegen.
+- Enhanced Developer Experience with TypeScript.
 
 $~$
 
@@ -33,7 +33,6 @@ Contentful and the Starter Template source code through guided steps:
 - Content type editing in the Contentful web app, as well as in the Starter Template's code
 
 $~$
-
 ## Getting started
 
 To get started, read the following guidelines.
@@ -42,7 +41,6 @@ To get started, read the following guidelines.
 - [Dependencies](./README.md#dependencies)
 - [Development](./README.md#development)
 - [Contentful API & GraphQL](./README.md#contentful-api--graphql)
-- [Deployment](./README.md#deployment)
 
 $~$
 
@@ -121,20 +119,6 @@ They're generated to the `src/lib/__generated` folder and ought to be committed 
 The TS types for these files are generated in the same location, in a `__generated` folder and like the other files ought to be committed.
 
 ---
-
-## Deployment
-
-I chose Vercel as a hosting provider. But if you clone the initial Starter Template
-
-
-| [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fcontentful%2Ftemplate-blog-webapp-nextjs&env=CONTENTFUL_SPACE_ID,CONTENTFUL_ACCESS_TOKEN,CONTENTFUL_PREVIEW_ACCESS_TOKEN&envDescription=API%20Keys%20needed%20for%20the%20application&envLink=https%3A%2F%2Fgithub.com%2Fcontentful%2Ftemplate-blog-webapp-nextjs%23environment-variables) 
-| [Environment variables docs](https://vercel.com/docs/concepts/projects/environment-variables)
-
-Make sure to add the necessary [environment variables values](./README.md#environment-variables) to the hosting provider
-environment variables.
-
----
-
 
 ### Adjustments in code
 
