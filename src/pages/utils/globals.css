@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-gray100 text-base text-gray800 md:text-base;
+    @apply bg-colorWhite text-base text-gray800 md:text-base;
   }
   /** The styles don't apply to rich text content. Therefore you need to touch CtfRichText.tsx **/
   .h1,
