@@ -31,5 +31,10 @@
   "notFound": {
     "title": "Page not found",
     "description": "This page doesn't seem to exist. <0>Click here</0> to go back the homepage."
+  },
+  "consentBanner": {
+    "message": "We use cookies to improve your experience. By accepting, you agree to our use of cookies for analytics.",
+    "accept": "Accept",
+    "decline": "Decline"
   }
 }

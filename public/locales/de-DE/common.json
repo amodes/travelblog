@@ -31,5 +31,10 @@
   "notFound": {
     "title": "Seite nicht gefunden",
     "description": "Diese Seite scheint nicht zu existieren. <0>Klicken Sie hier</0>, um zur Startseite zurückzukehren."
+  },
+  "consentBanner": {
+    "message": "Wir verwenden Cookies, um deine User Experience zu verbessern. Durch die Annahme stimmst du der Verwendung von Cookies für Analysen zu.",
+    "accept": "Akzeptieren",
+    "decline": "Ablehnen"
   }
 }
