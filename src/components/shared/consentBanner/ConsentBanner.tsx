@@ -46,18 +46,15 @@ const ConsentBanner = () => {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 mb-4 flex items-center justify-center">
-      <div className="w-full max-w-sm rounded-lg bg-colorWhite p-4 text-center shadow-lg">
+      <div className="w-full max-w-sm rounded-lg bg-gray100 p-4 text-center shadow-lg">
         <p className="mb-2 text-sm">{t('consentBanner.message')}</p>
         <button
           onClick={handleAccept}
-          className="bg-green-600 text-white hover:bg-green-700 mr-2 rounded-lg px-4 py-2 text-sm font-bold"
+          className="text-white mr-2 rounded-lg px-4 py-2 text-sm font-bold"
         >
           {t('consentBanner.accept')}
         </button>
-        <button
-          onClick={handleDecline}
-          className="bg-gray-400 text-white hover:bg-gray-500 rounded px-3 py-1 text-sm"
-        >
+        <button onClick={handleDecline} className="text-white rounded px-3 py-1 text-sm">
           {t('consentBanner.decline')}
         </button>
       </div>
